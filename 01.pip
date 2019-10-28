@@ -1,0 +1,10 @@
+pip 命令用来管理第三方的包
+
+1.pip --help 查看pip 的使用帮助手册
+2.pip list 查看安装了哪些包
+3.pip install 包名  安装最新版本的包
+4.pip install 包名==版本号 安装具体某个版本的包
+5.pip uninstall 包名   卸载某个包
+6.pip freeze > requirements.txt 把要安装的包的列表写入一个文件中
+7.pip install -r requirements.txt  读取文件中的包列表，并进行安装
+8.pip show 报名  查看具体包的信息

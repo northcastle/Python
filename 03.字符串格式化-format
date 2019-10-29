@@ -1,0 +1,13 @@
+format是一个字符串中的一个函数， ''.format()
+
+name = 'Jack'
+age = 18
+money = 100.123
+message = 'My name is {},I am {} years old,I have {} dollars'  # 这个位置花括号用来充当占位符
+message2 = message.format(name, age, money) # 调用.format () 方法进行值得填充
+print(message)
+print(message2)
+
+运行结果 ：
+My name is {},I am {} years old,I have {} dollars
+My name is Jack,I am 18 years old,I have 100.123 dollars

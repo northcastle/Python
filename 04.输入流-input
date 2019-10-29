@@ -1,0 +1,36 @@
+阻塞式输入流  input() 函数
+【注意 】 ：
+          input() 函数输入的内容都是字符串类型
+
+name = input('please input your name :')
+print('the name is : %s' % name)
+
+运行结果  ：
+please input your name :wanghognchang
+the name is : wanghognchang
+
+
+【简单练习一下input输入操作】
+print('''
+    **********************************
+        Welcome  To  Fish 
+    **********************************
+''')
+
+name = input('Please input your name : ')
+password = input('Please input your password : ')
+print('Dear %s ,your coins is not enought,please invest more money first ! ' % name)
+money = input('invest more money first : ')
+
+print('%s has invested %d success!' % (name, int(money)))
+
+运行结果 ：
+**********************************
+        Welcome  To  Fish 
+**********************************
+
+Please input your name : qwe
+Please input your password : qwe
+Dear qwe ,your coins is not enought,please invest more money first : 
+invest more money first : 123
+qwe has invested 123 success!

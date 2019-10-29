@@ -1,0 +1,54 @@
+总共介绍了三个占位符 %s %d %f
+
+1. %s 占位符 
+    name = 'Jack' #等号的前后都要写一个空格，这样更规范
+    age = 18
+    print('name is : %s,age is %s' % (name, age))
+                               %后面需要有一个空格；
+                               ，后面也需要有一个空格，这样更规范
+     
+     
+    【注】 ： 下面的这种输出方法是错误的
+        print('age is '+age)
+        错误提示  ：
+            TypeError: can only concatenate str (not "int") to str
+
+    1.1 整型转换为字符串  str(age) : 把age 转换成字符串
+        print('age is '+str(age))
+    1.2 print('age is %s' % age) ： 直接这样写也是OK的，也属于强制类型转换
+        print('age is %s' % False) ： 甚至可以转换布尔类型
+
+2. %d 整型 int('99.8') ==> 99
+   2.1 age = 18
+       print('age is : %d' % age)  # 18
+   2.2 age = 18.99
+       print('age is : %d ' % age) # 18
+   %d只保留整数部分
+   
+3.%f 可以保留小数后面的位数，并且四舍五入
+   3.1 money = 123.456
+       print('money is %f ' % money) # money is 123.456000 
+   3.2 money = 123.456
+       print('money is %.2f ' % money) # money is 123.46 （这个地方就体现出了四舍五入）
+       
+【小练习 】
+    move = '速度与激情'
+    price = 59.9
+    count = 2
+    ttl_money = price * count
+
+    summary = '''
+        电影名 ： %s
+        票价   ： %.1f
+        人数   ： %d
+        总价   :  %.1f
+    '''
+
+    print(summary % (move, price, count, ttl_money))
+    运行结果 ：
+      电影名 ： 速度与激情
+      票价   ： 59.9
+      人数   ： 2
+      总价   :  119.8
+
+  

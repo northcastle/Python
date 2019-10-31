@@ -1,0 +1,41 @@
+1.range函数 ：  注意 此函数的范围 是 前闭后开 区间  range(0,100) => [0,100)
+   """
+    range(stop) -> range object
+    range(start, stop[, step]) -> range object
+    
+    Return an object that produces a sequence of integers from start (inclusive)
+    to stop (exclusive) by step.  range(i, j) produces i, i+1, i+2, ..., j-1.
+    start defaults to 0, and stop is omitted!  range(4) produces 0, 1, 2, 3.
+    These are exactly the valid indices for a list of 4 elements.
+    When step is given, it specifies the increment (or decrement).
+    """
+    
+2.for 循环打印 三次 hello
+ # for i in range(0, 3):
+ #     print('thi is {} time hello !'.format(i))
+ 
+ 3.for 的新语法 ： for --else --break
+ 【应用场景】
+# print('begin :')
+# for i in range(0): # 在这种情况下，就不会进入到 这个for循环，
+#     print('this i = {}'.format(i))
+# print('end')
+
+3.1 for --else
+    # print('begin :')
+    # for i in range(0): # 在这种情况下，就不会进入到 这个for循环，
+    #     print('this i = {}'.format(i))
+    # else: # 当范围为空的时候，就会进入到这个else，因此这个语句无论如何都是会执行的，
+    #     print('there is no num!')
+    # print('end')
+    
+3.2 pass 关键字  ： 表示一个空语句
+
+    if 10 > 70:
+    #     print("you are good")
+    # else:
+    #     pass
+    #     # 这个地方我不知道要写什么
+    #     # 因此就用这个pass 关键字来做占位符，表示空语句
+    #     # 这样就不会报语法错误了
+    # print('over')

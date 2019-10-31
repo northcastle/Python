@@ -1,0 +1,39 @@
+1.直接使用 
+# age = 16
+# if age > 17:
+#     print('age is %d' % age)
+
+2.与else 一起使用
+# age = 16
+# if age > 17:
+#     print('age is %d' % age)
+# else:
+#     print('age is smaller than 18,you are a child %d' % age)
+
+3.if嵌套使用
+# print('*'*10, 'welcome to kaixin xiaoxiao heppy', '*'*10)
+# level = input('please input your level(lv1,lv2) :')
+# if level == 'lv1':
+#     print('初级玩家，免费玩儿')
+# else:
+#     print('当前玩家的等级是 ： %s' % level)
+#     money = int(input('请充值享受更多游戏体验（100的倍数）'))
+#     if money > 0 and money % 100 == 0:
+#         print('充值成功，请继续游戏')
+#     else:
+#         print('请输入正确的金额！')
+#         print('*'*10, 'game over', '*'*10)
+
+4.if--elif--elif--else 多条件使用
+
+# import random
+# 
+# a = random.randint(1, 100)
+# if a >= 90 and a <= 100:
+#     print('wonderful')
+# elif a >= 80 and a < 90:
+#     print('yiban')
+# else:
+#     print('333')
+# 
+# print('a is  {}'.format(a))

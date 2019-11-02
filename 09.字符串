@@ -85,6 +85,34 @@
             # print(name[:5]) # wangh ： 获取从0 到 4， 前闭后开 区间 [0,5)
             【注意下面的这个用负数的操作】
             # print(name[5:-2]) # ongchang.qq.c ，同样是前开后闭区间 [5,-2)
+            
+    **4.字符串的正序输出 和 倒序输出 
+          # str = 'abcdefg'
+          # print(str)   # abcdefg
+          # print(str[:]) # abcdefg
+          # print(str[::1]) # abcdefg
+          # print(str[::3]) # adg  这个表示步长,即表示2个输出一个
+          # print(str[1:6]) # bcdef
+          # print('-------------------')
+          # print(str[::-1]) # gfedcba 带负号就表示倒序,这样就把这个字符串倒过来了
+          # print(str[-1:-7:-1]) # gfedcb
+          # print(str[-1:-7:-2]) # gec
         
+       截取字符串的小练习 ： 
+          '''
+              小练习 : str = 'hello world'
+              1.逆序输出 world --- dlrow
+              2.正向输出 hello
+              3.逆序输出整个 hello world
+              4.打印 获取 oll
+              5.打印 llo wor
+           '''
+           参考代码 ： 
+              str = 'hello world'
+              print(str[-1:-6:-1])
+              print(str[0:5])
+              print(str[::-1])
+              print(str[-7:-10:-1])
+              print(str[2:8])
        
                 

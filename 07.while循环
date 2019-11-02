@@ -1,0 +1,30 @@
+1. 直接上手案例 ： 打印 3 的倍数（简单小程序）
+方式一 ： 
+    # i = 1
+    # while i < 31:
+    #     if i % 3 == 0:
+    #         print('--> ',i)
+    #     i += 1
+    # print('---- over ----')
+    
+方式二 ： 好像这种方式更加简单一些
+    # i = 3
+    # while i <= 30:
+    #     print('=====> ',i)
+    #     i += 3
+
+
+2.案例2 : 计算 1-20 的累加和
+'''
+  Requirement Description :
+     you need to calculate the sum of 1 to 20
+     with while
+'''
+# i = 1
+# sum = 0
+# while i <= 20:
+#     sum += i
+#     i += 1
+# print('the sum of 1-20 is : ',sum)
+
+

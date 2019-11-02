@@ -28,6 +28,7 @@
     # else: # 当范围为空的时候，就会进入到这个else，因此这个语句无论如何都是会执行的，
     #     print('there is no num!')
     # print('end')
+    # 当所有的循环都正常结束的时候，才会执行 这个 else 里面的内容，此时 for --- else 是一个完整的整体 
     
 3.2 pass 关键字  ： 表示一个空语句
 
@@ -39,3 +40,21 @@
     #     # 因此就用这个pass 关键字来做占位符，表示空语句
     #     # 这样就不会报语法错误了
     # print('over')
+    
+3.3 break 关键字，表示跳出语句
+   案例场景 ： 输入用户名密码进行验证，如果验证成功则通过，如果次数大于三次则锁定账号
+   # print('please begin identify')
+   # for i in range(3):
+   #     username = input('please input your username :')
+   #     password = input('please input your password :')
+   #     if username == 'admin' and password == '123456':
+   #         print('Congratulation! You can go on!')
+   #         break # 验证成功了，就直接跳出这个循环就ok了，强制退出for循环，并且，如果for -- else 的话，也不会执行 else 中的内容
+   #     else:
+   #         if i == 2:
+   #             print('Sorry ,your account is locked!')
+   #         else:
+   #             print('please try again')
+   #
+   # print('end the identify')
+

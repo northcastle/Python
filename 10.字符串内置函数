@@ -1,0 +1,41 @@
+1.大小写相关
+      '''
+          1. capitalize() 首字母大写
+          2. title()  每个单词的首字母大写
+             istitle() 判断是否符合title的规范,返回值为 布尔值
+          3. upper()  每个字母都大写
+             isupper() 判断是否全部都是大写字母,返回值为布尔值
+          4. lower()  每个字母都小写
+             islower() 判断是否全都都是小写字母,返回值为布尔值
+      '''
+      # str = 'hello world'
+      # print(str) # 原样输出 hello world
+      # print(str.capitalize()) # 首字母大写 Hello world
+      # print(str.title()) # 每个单词的首字母大写 Hello World
+      # print(str.upper()) # 每个字母都大写 HELLO WORLD
+      # print(str.lower()) # 每个字母都小写 hello world
+      
+      【补充】 ： 求字符串的长度的函数 len(str)，返回值是一个整型
+               # s = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0123456789'
+               # print(len(s))  
+               运行结果 62 
+               
+       【使用】 忽略大小写的验证码输入操作 ： 
+               '''
+                   Requirement Description
+                   Find random verification code
+               '''
+              # import random
+              # 
+              # s = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0123456789'
+              # code = ''
+              # for i in range(4):
+              #     ran = random.randint(0, len(s)-1) # 此方法是 两个闭区间的操作，注意一下
+              #     stran = s[ran]
+              #     code += stran
+              # print('verification code is :'+code)
+              # yourcode = input('please input your verification code : ')
+              # if yourcode.lower() == code.lower():
+              #     print('welcome to my world')
+              # else:
+              #     print('your code is wrong!')

@@ -125,3 +125,53 @@
       print(str.isalpha())
       str = '0231'
       print(str.isdigit())
+      
+      
+ 6. join 函数 ： 用来拼接字符串的
+       '''
+          join() : 以指定字符串作为拼接符，将列表进行拼接期来
+
+      '''
+
+      str = 'wang'
+      res1 = '-'.join(str) # 以 '-'作为拼接符，将字符串str拼接起来
+      print(res1) # 结果是 w-a-n-g
+      #下面简单理解一下列表，就可以理解为一个 数组
+      strs = ['w','a','n','g','h'] # 这就是个列表
+      res2 = '-'.join(strs)
+      print(res2) # 结果是 w-a-n-g-h
+      
+  7. 去除字符串前后的空格的函数
+        '''
+          strip() 去掉字符串前后空格的函数
+          lstrip() 去掉左边的空格
+          rstrip() 去掉右边的空格
+      '''
+            s = '   wang   '
+            print('-->', s.replace(' ', '*'), '<--')
+            s1 = s.lstrip()
+            print('-->', s1.replace(' ', '*'), '<--')
+            s2 = s.rstrip()
+            print('-->', s2.replace(' ', '*'), '<--')
+            s3 = s.strip()
+            print('-->', s3.replace(' ', '*'), '<--')
+
+            print('*', s, '*') # 原来的字符串是没有变的
+            
+  8. 求字符串中的子字符串的个数
+        '''
+        count() 求字符串中 子字符串的 个数
+      '''
+      s = 'wang hong chang'
+      res = s.count('ng')
+      print('{} has {} "ng" '.format(s, res))
+      # result ： wang hong chang has 3 "ng" 
+      
+  9. 按照某个字符分割字符串
+        '''
+          split() : 分割函数，将字符串按照某个字符进行分割
+                    并且返回值为 列表 （就是个数组，就是个集合，可以这么理解）
+      '''
+      s = 'wang-hong-chang'
+      res = s.split('-') # 表示 按照 ‘-’ 进行分割字符串
+      print(res) # result : ['wang', 'hong', 'chang']

@@ -39,3 +39,89 @@
               #     print('welcome to my world')
               # else:
               #     print('your code is wrong!')
+              
+2.查找相关的
+'''
+    2.字符串的查找函数
+      2.1 find  查找指定范围内的字符串，找不到时，返回-1
+                Finds the location of a subString in the specified range
+      2.2 rfind 从右侧开始查找
+                Finds the location of a subString from right side
+      2.3 index 与find方法是一样的，不过当找不到的时候，会报异常，而不是返回-1
+                 It is the same as find method,but when the subString is can not be found,
+                 an exception will be reported instead of -1
+      2.4 rindex 与rfind一样
+      2.5 替换 replace
+      
+'''
+
+  2.1 find 
+      str = 'wanghong chang'
+      position1 = str.find('an') # 默认查找范围是 全部字符串
+      print('---> ',position1)
+      position2 = str.find('an',0,3)  # 指定查找范围是 [0,3),注意区间的开闭情况
+      print('---> ', position2)
+      position3 = str.find('an',3,len(str)-2) # 当在指定返回内查找不到的时候，返回 -1
+      print('---> ',position3)
+ 2.2 rfind
+      str = 'https://www.baidu.com/assets/blog_log1.png'
+      position = str.rfind('/')
+      print('---> ',position)
+      #然后我就可以根据这个位置，进行字符串的截取了
+      namestr = str[position+1:len(str)]
+      print('===> ',namestr)
+      
+  2.3 replace
+      str = 'wang hong  chang is a handsome boy'
+      str1 = str.replace(' ', '-') # 将空格 ‘ ’ 替换为 ‘-’
+      print('--str--> ', str)
+      print('--str1-->', str1)
+      str2 = str.replace(' ', '+', 5) # 指定替换的次数，5次
+      print('--str2-->', str2)
+
+
+3.编码和解码
+'''
+    3.编码和解码 ： 涉及到中文在网络中传输的时候，就需要用到
+      3.1 encode ： 编码
+          encode(encoding='UTF-8',errors='strict')
+                 encoding 指定编码格式，如果出现异常，默认报错 ValueError;
+                 除非erroes指定时ignore 或者 replace
+      3.2 decode : 解码
+'''
+
+      msg = 'hello 王宏昌!'
+      #编码
+      b_msg = msg.encode('utf-8')
+      print(b_msg)
+      #解码
+      receive_msg = b_msg.decode('utf-8')
+      print(receive_msg)
+      
+ 4. 开头和结尾的判断      
+       '''
+       4. 开头和结尾的判断 : 返回结果时布尔值
+          常用来对文件类型进行判断
+          Commonly used to judge the file type
+        4.1 startswith ： 判断是否以。。。开头
+        4.2 endswith : 判断是否以。。。结尾
+      '''
+
+      str = 'abc/def/qewwre.txt'
+      print(str.startswith('abc')) # True
+      print(str.endswith('.tt')) # False
+      
+ 5. 判断字母 和 数字 的函数
+       '''
+        5. 几个判断使用的函数
+          5.1 isalnum : 如果字符串至少有一个字符并且所有字符都是字母或数字，则返回True,否则，返回False
+          5.2 isalpha : 如果字符串至少有一个字符并且所有字符都是字母，则返回True,否则，返回False
+          5.3 isdigit : 如果字符串至少有一个字符并且所有字符都是数字，则返回True,否则，返回False
+      '''
+
+      str = 'wanghongchang123'
+      print(str.isalnum())
+      str = 'wanghongchang'
+      print(str.isalpha())
+      str = '0231'
+      print(str.isdigit())

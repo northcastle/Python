@@ -1,0 +1,29 @@
+'''
+  list 列表 : 简单理解为就是一个数组
+'''
+
+# 1. 声明列表
+names = ['java','spring','springboot','python','mybatis']
+books = []
+
+#2. 查看地址
+print(id(names))
+print(id(books))
+
+#3. 获取元素 ： 通过下标直接获取,从0开始，-1表示最后一个
+print(names[3]) # python
+print(names[-2]) # python
+# print(names[8]) # 会报越界异常
+
+#4. 获取列表的长度
+print(len(names)) # 5 ,这个与字符串的长度是一样的
+
+#5. 结合循环遍历整个列表
+for name in names:
+    print('---> ',name)
+
+#6. 判断某个值是否在列表中,可以直接使用 in 运算符，同样循环遍历也可以
+if 'python' in names:
+    print('yes')
+else:
+    print('no')

@@ -1,0 +1,33 @@
+1.列表的切片操作（与字符串的切片操作时一样的）
+  1.1 正向切片
+      print(names[2:5]) # 前闭后开区间  ['springboot', 'python', 'mybatis']
+      print(names[2:-1]) # 支持负数标号  ['springboot', 'python', 'mybatis', 'SSH', 'Oracle']
+      print(names[2:-1:2]) # 步长 ['springboot', 'mybatis', 'Oracle']
+      print(names[2::2]) # 空的位置，表示到最开始或者最末尾 ['springboot', 'mybatis', 'Oracle']
+      
+  1.2 反向切片
+      print(names[::-1]) # 第三个参数-1 就表示反向，从右向左，['MySQL', 'Oracle', 'SSH', 'mybatis', 'python', 'springboot', 'spring', 'java']
+      print(names[-1:-5:-1]) # 前闭后开区间 ['MySQL', 'Oracle', 'SSH', 'mybatis']
+      print(names[-1:-5:-2]) # 可以设置步长为 2 ['MySQL', 'SSH']
+      print(names[-1::-3]) # 空的位置，表示最开头或者最末尾 ['MySQL', 'mybatis', 'spring']
+      
+ 2.列表的添加操作 ： append   extend   insert
+      names = ['java']
+      print(names) #  ['java']
+      
+      #2.1. append 在末尾追加
+      names.append('spring')
+      print(names)  # ['java', 'spring']
+      
+      #2.2  extend 表示列表的合并; 也可以使用 + 来连接两个列表
+      names.extend('abc')
+      print(names) # ['java', 'spring', 'a', 'b', 'c']
+      names.extend(['springboot','oracle'])
+      print(names) # ['java', 'spring', 'a', 'b', 'c', 'springboot', 'oracle']
+      print(names+['abc','bcd']) #  ['java', 'spring', 'a', 'b', 'c', 'springboot', 'oracle', 'abc', 'bcd']
+      
+      #2.3 insert 插入操作: 在索引前面插入元素
+      names.insert(0,'abc')
+      print(names) # ['abc', 'java', 'spring']
+      names.insert(1,['aaa','bbb'])
+      print(names)  # ['abc', ['aaa', 'bbb'], 'java', 'spring']

@@ -1,0 +1,41 @@
+1.列表的修改
+  '''
+      修改列表中的值 ： 只能通过下标的方式进行修改
+
+  '''
+  brands = ['hp', 'dell', 'lenvon','支持华为', 'xiaomi', 'iphone']
+  print(brands)
+  #1. 使用下标进行修改
+  brands[-1] = 'iphone 11'
+  print(brands)
+  #2. 循环找到位置，也是使用下标进行修改
+  for i in range(len(brands)):
+      if '华为' in brands[i]:
+          brands[i] = brands[i].replace('华为', 'HUAWEI')
+  print(brands)
+  
+  2.删除列表中的某个值
+  
+  '''
+      删除操作 ：也是通过下标进行删除的
+                del brands[5]
+  '''
+
+  brands = ['hp', 'dell', 'lenvon','支持华为', 'xiaomi', 'iphone']
+  print(brands)
+
+  #1.使用下标进行删除
+  del brands[2]
+  print(brands)
+
+  #2.使用循环，先找到要删除的元素，然后再删除
+  # 注意 ： 这个地方只能使用while循环来进行操作，因为for循环不好用
+
+  length = len(brands)
+  i = 0
+  while i < length:
+      if 'iphon' in brands[i]:
+          del brands[i]
+          length -= 1 
+      i+=1
+  print(brands)

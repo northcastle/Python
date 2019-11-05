@@ -1,0 +1,76 @@
+1.添加的函数 ： insert append extend (这三个方法前面已经讲过了)
+
+2.删除的函数 ： del list1[5] (这个函数前面也已经讲过了)
+               remove pop  clear
+
+  2.1 remove 方法
+      '''
+        remove 方法 : 
+           1. 删除第一个出现的元素，并且没有返回值
+           2. 如果没有该元素，则直接 报出异常
+     '''
+      list1 = ['aa','bb','cc','dd','bb','cc']
+      print(list1) # ['aa', 'bb', 'cc', 'dd', 'bb', 'cc']
+      list1.remove('bb')
+      print(list1) # ['aa', 'cc', 'dd', 'bb', 'cc']
+      list1.remove('abcf') # ValueError: list.remove(x): x not in list
+      print(list1)
+    
+  2.2 pop 方法
+      '''
+        pop 方法 ： 
+           1. 默认删除列表中最后一个元素，
+           2. 可以指定索引删除指定索引的元素，
+           3. 返回值为删除的这个元素
+      '''
+      list1 = ['aa','bb','cc','dd','bb','cc']
+      print(list1) # ['aa', 'bb', 'cc', 'dd', 'bb', 'cc']
+      res = list1.pop()
+      print(res) # cc
+      print(list1) # ['aa', 'bb', 'cc', 'dd', 'bb']
+      res2 = list1.pop(3) # 删除索引是3 的位置的元素
+      print(res2) # dd
+      print(list1) # ['aa', 'bb', 'cc', 'bb']
+      
+   2.3 clear 方法
+    '''
+      clear 方法 
+         1. 清空所有的元素
+         2. 没有返回值
+    '''
+        list1 = ['aa','bb','cc','dd','bb','cc']
+        print(list1) # ['aa', 'bb', 'cc', 'dd', 'bb', 'cc']
+        list1.clear()
+        print(list1) # [] 已经被清空了的列表
+        
+3. 反转 reverse
+    '''
+        reverse ： 反转操作，直接将这个列表给反转了
+    '''
+    list1 = ['aa','bb','cc','dd','bb','cc']
+    print(list1) # ['aa', 'bb', 'cc', 'dd', 'bb', 'cc']
+    list1.reverse(); # 将这个列表反转了
+    print(list1) #  ['cc', 'bb', 'dd', 'cc', 'bb', 'aa']
+    print(list1[::-1]) # 这个只是 倒序取出来，并没有改变顺序 ['aa', 'bb', 'cc', 'dd', 'bb', 'cc']
+    print(list1) # ['cc', 'bb', 'dd', 'cc', 'bb', 'aa']
+    
+4. 排序 sort 
+    '''
+        sort ： 排序
+          1. 默认升序
+          2. 使用倒序，添加 参数reverse=True
+    '''
+    list1 = [1,55,66,13,78,23,458,14]
+    print(list1) # [1, 55, 66, 13, 78, 23, 458, 14]
+    list1.sort()
+    print(list1) # [1, 13, 14, 23, 55, 66, 78, 458]
+    list1.sort(reverse=True)
+    print(list1) # [458, 78, 66, 55, 23, 14, 13, 1]
+    
+ 5.计数 count
+     '''
+        count : 计数
+    '''
+    list1 = ['aa','bb','ccc','aa','ewer','aa']
+    print(list1) # ['aa', 'bb', 'ccc', 'aa', 'ewer', 'aa']
+    print(list1.count('aa')) # ['aa', 'bb', 'ccc', 'aa', 'ewer', 'aa']

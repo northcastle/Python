@@ -31,3 +31,45 @@
       print(names) # ['abc', 'java', 'spring']
       names.insert(1,['aaa','bbb'])
       print(names)  # ['abc', ['aaa', 'bbb'], 'java', 'spring']
+      
+      
+      【练习】
+        '''
+          Requirement Description:
+              1. create 10 random numbers and add them to a list
+              2. create 10 different random numbers and add them to another list
+        
+        '''
+
+        import random
+
+        #1.create 10 random numbers and add them to a list
+        list1 = []
+        for i in range(10):
+            list1.append(random.randint(1,15))
+        print(list1)
+
+        #2.create 10 different random numbers and add them to another list
+        list2 = [];
+        i = 0;
+        while i < 10:
+            ran_num = random.randint(1,15)
+            print(ran_num,end=',')
+            if ran_num not in list2:
+                list2.append(ran_num)
+                i += 1
+            else:
+                continue
+        print(list2)
+     
+     【最大值最小值】
+      # max value and min value in list2 and get sum of list2
+        print(max(list2))
+        print(min(list2))
+        print(sum(list2))
+        
+   3.列表的排序 -- sorted
+    #sort list ,default asc
+        print(sorted(list2))
+    # reverse = True decide that your list order desc
+        print(sorted(list2,reverse=True))

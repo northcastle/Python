@@ -1,0 +1,46 @@
+1.枚举函数
+
+    '''
+        enumerate ：枚举函数
+            把一个可迭代的元素返回为下标+元素的形式
+            放到for循环中，返回值有两个，一个是 索引下标，一个是值
+    '''
+    1.1 遍历 列表
+        list1 = ['aa','bb','ccc','aa','ewer','aa']
+        for a_index,b_value in enumerate(list1):
+            print(a_index,b_value)
+        # 0 aa
+        # 1 bb
+        # 2 ccc
+        # 3 aa
+        # 4 ewer
+        # 5 aa
+    1.2 遍历字符串，只要是可迭代的都可以进行操作
+        str1 = 'abcdfge'
+        for index,value in enumerate(str1):
+            print(index,value)
+        # 0 a
+        # 1 b
+        # 2 c
+        # 3 d
+        # 4 f
+        # 5 g
+        # 6 e
+        
+   2. 冒泡排序
+    list1 = [123,45,67,12,35,78,62,89,75,99,101]
+    print(len(list1)) # 11
+    for i in range(0,len(list1)-1): # 控制循环次数
+        for j in range(0,len(list1)-1-i): # 因为后面的就需要再进行循环了呀
+            if list1[j] < list1[j+1]: # 这里换一个符号就是反方向的排序
+                list1[j],list1[j+1] = list1[j+1],list1[j]
+    print(list1)
+     
+   3. 选择排序
+   
+   list2 = [123,45,67,12,35,78,62,89,75,99,101]
+    for i in range(0,len(list2)-1):
+        for j in range(i+1,len(list2)):
+            if list2[i] > list2[j]:
+                list2[i],list2[j] = list2[j],list2[i]
+    print(list2)

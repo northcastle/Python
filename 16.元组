@@ -1,0 +1,53 @@
+
+'''
+    元组 ： 类似列表，可以当成一个容器
+         特点 ： 
+              1. 定义的符号（）
+                 1.1 只放一个元素的时候，类型就是该元素的类型
+                 1.2 当添加一个逗号，或者其他元素的时候，就变成了元组tuple类型
+              2. 元组中的内容不可以修改,only read
+              3. 关键字为 tuple
+              4. 可以把列表转换为元组 tuple()函数
+              5.读取元组的元素，同列表的方式是一样的，下标，切片  即可
+              6. 元组的函数
+                6.1 count (element) : 查询元组中的某个元素的个数
+                6.2 index（number） ： 查找 number的下标位置，没有的话就报错 
+'''
+      t1 = ()
+      print(type(t1)) # <class 'tuple'>
+      t2 = (100)
+      print(type(t2)) # <class 'int'>
+      t3 = ('abc')
+      print(type(t3)) # <class 'str'>
+      t4 = ('abc',)
+      print(type(t4)) # <class 'tuple'>
+      t5 = ('abc','def')
+      print(type(t5)) #  <class 'tuple'>
+
+      list1 = [1,22,13,45,99]
+      t6 = tuple(list1)
+      print(list1)  # 列表 [1, 22, 13, 45, 99]
+      print(t6) # 元组 (1, 22, 13, 45, 99)
+
+      # 切片
+      print(t6[2]) # 13
+      print(t6[-1]) # 99
+      print(t6[1:3]) # (22,13)
+      print(t6[-1:-4:-1]) # (99,45,13)
+      print(t6[-1:-4:-2]) # (99,13)
+      print(t6[::-1]) #(99,45,13,22,1)
+
+      #查找最大值,最小值，求和，求长度
+      print(max(t6)) # 99
+      print(min(t6)) # 1
+      print(sum(t6)) # 180
+      print(len(t6)) # 5
+      
+      # 两个函数的使用
+      print(t6.count(99)) # 1 说明元组中有一个99 这个元素
+      print(t6.index(99)) # 4 返回这个元素的下标
+      
+      # 拆包
+      t7 = (110,22,33)
+      a,b,c = t7
+      print(a,b,c) # 110 22 33

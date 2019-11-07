@@ -1,0 +1,16 @@
+'''
+    字典 ： dictionary (这个东西就好像是 Map)
+      特点 ： 1. 符号 ： {}
+              2. 关键字 ： dict
+              3. 保存的元素 ：键值对 key : value 
+'''
+
+
+1.字典的定义
+    #1. 定义字典
+    dict1 = {} # 空字典
+    dict2 = dict() # 空字典 list1 = list()  tup1 = tuple() ,这两个也可以这样定义
+    dict3 = {'name': 'waggon', 'age':23,'hobbies':['playingfootball','eating']}
+        # 下面的这种方式就自己体会一下吧，也是常规操作
+    dict4 = dict([('name', 'wanghonghang'),('age', 23)])
+    print(dict4) # {'name': 'wanghonghang', 'age': 23}

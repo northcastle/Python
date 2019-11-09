@@ -14,3 +14,107 @@
         # 下面的这种方式就自己体会一下吧，也是常规操作
     dict4 = dict([('name', 'wanghonghang'),('age', 23)])
     print(dict4) # {'name': 'wanghonghang', 'age': 23}
+
+2.字典的遍历
+
+# 2.1 每次循环都会取出 一个 key, 然后 通过 中括号 可以取到这个 value
+    dict1 = {'name01':'wang','name02':'hong','name03':'chang'}
+    for key in dict1:
+        print(key, '---->', dict1[key])
+
+'''
+    字典中的函数 ：
+        1. items () : 返回的是 列表，且列表的中的元素 是元组（key-value）
+        2. keys() : 返回的是所有的 key 的列表
+        3. values() : 返回的是所有的 value 的列表
+        4. in 用于判断元素 有没有在 字典 的 key的列表中 
+        5. get(key) : 根据key 获取 value,如果取不到，则 默认返回 None;
+           get(key,default value) 还可以设置 如果找不到时候的 默认值 
+'''
+    dict2 = {'name01':'wang','name02':'hong','name03':'chang'}
+    print(dict2.items()) # dict_items([('name01', 'wang'), ('name02', 'hong'), ('name03', 'chang')])
+
+# 2.2 遍历列表
+    for item in dict2.items():
+        print(item)
+    
+# 2.3 进一步根据元组的 特性: 拆包，直接分开获取到内容
+    for key,value in dict2.items():
+        print(key,' : ', value)
+        
+#2.4 keys() 函数
+    print(dict2.keys()) # dict_keys(['name01', 'name02', 'name03'])
+
+#2.5 values() 函数
+    print(dict2.values()) # dict_values(['wang', 'hong', 'chang'])
+
+#2.6 in 判断元素有没有在字典的 key中出现
+    print('name02' in dict2) # True
+
+#2.7 get() 函数
+    print(dict2.get('name01')) # wang
+    print(dict2.get('name05')) # None
+    print(dict2.get('name05','jack')) # jack
+    
+    
+3. 删除操作
+
+'''
+    1. del 系统函数  : 当找不到 key 的时候就会报错
+    2. pop() 函数 : 返回值 是被删除的 元素的值
+                    无默认值 且 找不到 key的时候，会报错
+                    可以有默认值，当找不到的时候就返回默认值
+    3. popitem () 函数 ： 随机删除一个，一般都会从末尾开始删除
+    4. clear() 函数 : 清空字典，不讲
+'''
+
+dict3 = {'name01':'wang','name02':'hong','name03':'chang'}
+print(dict3) # {'name01': 'wang', 'name02': 'hong', 'name03': 'chang'}
+
+# 1. del 函数
+    del dict3['name01']
+    print(dict3) # {'name02': 'hong', 'name03': 'chang'}
+
+#2. pop() 函数
+    result = dict3.pop('name02')
+    print(result) # hong
+    print(dict3) # {'name03': 'chang'}
+
+    # result = dict3.pop('name05')
+    # print(result)  # 报错
+    # print(dict3)
+
+    result = dict3.pop('name05', '没有找到这个key')
+    print(result)  # 没有找到这个key
+    print(dict3) # {'name03': 'chang'}
+  
+ #3. popitem 函数
+    result = dict3.popitem();
+    print(result) # ('name03', 'chang')
+    print(dict3) # {'name01': 'wang', 'name02': 'hong'}
+    
+    
+4.其他补充函数
+
+
+'''
+    其他的函数：
+        1. update() : 这个就是字典的合并操作，字典中没有 + 这个运算符
+                      并且没有返回值
+        2.fromkeys(seq[,default value]) : 将一个列表 转换成一个字典，
+                      key就是列表的值，value默认为None
+'''
+
+#1. update()
+    dict5 = {'name01':'wang','name02':'hong'}
+    dict6 = {'name01':'liu','name03':'jia'}
+    res = dict5.update(dict6)
+    print(res) # None 没有返回值
+    print(dict5) # {'name01': 'liu', 'name02': 'hong', 'name03': 'jia'}
+
+#2.fromkeys()
+    list1 = ['aa','bb','cc']
+    dict_new = dict.fromkeys(list1)
+    print(dict_new) # {'aa': None, 'bb': None, 'cc': None}
+    dict_new = dict.fromkeys(list1,100)
+    print(dict_new) # {'aa': 100, 'bb': 100, 'cc': 100}

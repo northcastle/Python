@@ -118,3 +118,4 @@ print(dict3) # {'name01': 'wang', 'name02': 'hong', 'name03': 'chang'}
     print(dict_new) # {'aa': None, 'bb': None, 'cc': None}
     dict_new = dict.fromkeys(list1,100)
     print(dict_new) # {'aa': 100, 'bb': 100, 'cc': 100}
+

@@ -1,0 +1,19 @@
+常见的类型有 str() int() list() tuple() dict() set()
+
+#1. str 转  int,list,tuple,set
+#2.其他类型转 str ,基本上都可以转，不过就是 外层加了一个 引号 而已
+  str1 = '123'
+  print(int(str1)) # 123 int
+  print(list(str1)) # ['1', '2', '3'] list
+  print(tuple(str1)) # ('1', '2', '3') tuple
+  print(set(str1)) # {'3', '1', '2'} set
+
+#3. list 转  tuple,set,也可以转dict,不过形式必须是 [(key,value),(key,value),()....]
+#4. 反之，tuple,set都可以直接转成list,不过，dict在转成list的时候，只留下了key,没有了value
+  list1 = ['a', 'b', 'c', 'ddd']
+  print(list1) # ['a', 'b', 'c', 'ddd'] list
+  print(tuple(list1)) # ('a', 'b', 'c', 'ddd') tuple
+  print(set(list1)) # {'b', 'c', 'ddd', 'a'} set
+
+  list2 = [('name01', 'wang'), ('name02', 222), ('name03', 'chang')]
+  print(dict(list2)) # {'name01': 'wang', 'name02': 222, 'name03': 'chang'} dict

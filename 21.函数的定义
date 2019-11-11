@@ -1,0 +1,54 @@
+'''
+    函数 ：
+        1. 定义函数 - 无参
+           def function_name():
+               function body
+
+        2. 定义函数 - 有参
+            def function_name(param1,param2...):
+                functoin body
+
+        3.定义函数 - 可变参数(此时参数会被封装成一个元组的类型，因此可以遍历)
+            def function_name(*args):
+                function body
+           【 此时，这个args,会被翻译为 一个元组，这样就可以使用了】
+
+             def add(*args): # 第一个 * args 为可变参数，不确定参数个数的
+                print(args)
+                sum = 0
+                for val in args:
+                    sum += val
+                print('求的累加和 为 ： sum = {}'.format(sum))
+
+        4.定义函数 - 有一个确定的参数，还有可变参数
+            def function_name(certain_arg, *args):
+                function body
+            【注】 ： 固定的参数一定是要在 可变参数之前的位置才可以
+            def add(name,*args): # 第一个为固定的参数，必须要传的，第二个 * args 为可变参数，不确定参数个数的
+                print(args)
+                sum = 0
+                for val in args:
+                    sum += val
+                print('{} 求的累加和 为 ： sum = {}'.format(name,sum))
+
+
+5.函数定义 - 关键字参数 ： key=value 的形式，此形势，相当于添加了一个默认值
+            def function_name(a,key1=value1,key2=value2):
+                function body
+            【使用如下】
+            def add(a,b=10,c=20):
+                print(a,b,c)
+                print('sum = ',a+b+c)
+
+            add(1) # 1 10 20 ,sum = 31 ，只传了a的值
+            add(1,2) # 1 2 20 ,sum =  23 ， 传了 a,b 的值，c的值默认
+            add(1,c=100) # 1 10 100,sum =  111 ， 传了a的值，指定传了c的值，b的值默认（这就是关键字）
+
+        6.函数定义 - 关键字可变参数 **kwargs
+
+            def add(**kwargs): # **kwargs 就表示 关键字可变参数，此时传递的时候，只能传key=value的形式
+                print(kwargs)  # 这个地方自动把关键字参数转为了 字典的类型
+
+            add(a=100,b=200,c=300) # {'a': 100, 'b': 200, 'c': 300}
+
+'''

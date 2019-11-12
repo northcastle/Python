@@ -57,4 +57,28 @@
                 #add(dict1) # 这样写会报错
                 add(**dict1) # 这样就是OK的
 
+        7.函数的定义 - 返回值
+            def dunction_name(param1,param2...):
+                function body
+                return value1,value2... # 在最后的位置写上返回的值
+            【关于返回值】
+                7.1 只返回一个的时候，用一个变量来接收即可
+                    def add(x,y):
+                        result = x+y
+                        return result # 直接把运算结果来返回
+                    res = add(100,200)
+                    print(res) # 300
+                7.2 返回多个的时候，用一个变量来接收，自动转换为 元组 类型，相当于 装包 了
+                    def add(x,y):
+                        result = x+y
+                        return 'x+y=',result # 返回多个值
+                    res = add(100,200)
+                    print(res) # ('x+y=', 300) 自动装包了
+                7.3 返回多个的时候，用多个变量来接收，自动依次赋值，相当于 拆包了
+                    def add(x,y):
+                        result = x+y
+                        return 'x+y=',result
+                    res1,res2 = add(100,200) # 用两个参数接收两个返回值
+                    print(res1,res2) # x+y=  300
+
 '''

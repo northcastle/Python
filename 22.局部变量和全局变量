@@ -1,0 +1,46 @@
+
+'''
+    局部变量 ： 声明在函数内部的变量，在函数外部不能直接使用
+            1.内部变量，可以在函数内随便修改
+            2.在函数的内部，随便用
+            3.在函数的外部，如果直接使用，就会报错
+            def variable_Fun1():
+                namein = 'aaa'
+                namein += 'b' # 内部变量，可以在函数内随便修改
+                print(namein) # 在函数的内部，随便用
+
+            print(namein) # 在函数的外部，如果直接使用，就会报错
+            
+    全局变量 ： 声明在外部，在整个文件中都可以访问，
+            1.函数内可以访问 这个全局变量
+            2.但是 函数内不可以 修改 这个 全局变量的值，否则，会报错
+            3.如果非要进行修改，则需要使用关键字 global在函数中引入一下
+            4.但是，如果当全局变量 是 不可变的时候，比如  str tuple int float,就需要添加 global 关键字
+                    如果全局变量 是 可变的时候，比如 list set dict,此时就不需要添加global关键字，直接进行操作即可
+            
+            nameout = 'whc' # 这个就是声明了一个全局变量
+            def vatiable_Fun2():
+                nameoutin = 'qew' # 内部变量
+                print(nameoutin) # 使用内部变量
+            
+                print(nameout) # 使用全局变量，ok，没有问题
+                nameout += 'asdf' # 但是不可以进行修改，
+            ============================================================
+            nameout = 'whc' # 这个就是个 不可变的 全局变量
+            namelist = ['a','b','c','d'] # 这个是一个可变的全局变量
+            def vatiable_Fun3():
+                global nameout # 如果想对这个全局变量进行修改，则使用关键字 global进行引入一下
+                                # 这个是 python 中的一个规定
+                print(nameout) # whc 使用全局变量，ok，没有问题
+                nameout += 'asdf' # whcasdf 但是不可以进行修改，
+                print(nameout)
+                
+                print(namelist) # ['a', 'b', 'c', 'd']  未修改之前
+                namelist.remove('a') # 对全局变量进行修改，没有报错
+                print(namelist) # ['b', 'c', 'd']
+
+            vatiable_Fun3() # 调用函数
+            print(nameout) # whcasdf ,因为在函数中修改了，所以值肯定变了
+            print(namelist) # ['b', 'c', 'd'] 因为函数中修改了，所以只肯定变了
+            
+'''

@@ -1,0 +1,71 @@
+
+'''
+    内部函数 ：
+        1. 在函数的内部 再 声明一个函数，
+        2. 关于内部函数的变量访问 ：
+           2.1 如果 是 内部函数的 变量 ，则 可以直接访问与修改
+           2.2 如果 是 外部函数的 局部 不可变变量，比如 int,则可以直接访问，如果要修改，需要添加 nonlocal variable_name, 声明一下
+           2.3 如果 是 外部的 全局 不可变变量，比如 int，则可以直接访问，如果要修改，需要添加 global variable_name,声明一下
+        3. 两个函数 ：
+          3.1  # 内置函数 locals() 可以查看到当前函数中的局部变量
+                    print(locals())  # 返回的是一个 字典
+                    # {'name1': 'wanghongchang', 'fun_inner': <function fun1.<locals>.fun_inner at 0x0000000002367940>, 'b': 300, 'list1': [1, 2, 3, 4]}
+                
+          3.2 # 内置函数 globals() 可以查看到当前文件中的全局变量
+               print(globals()) # 查看全局变量的内容，返回结果也是一个字典
+'''
+  1. 内部函数的简单声明 和 使用 
+    name = 'liujia'
+
+    # 声明一个函数
+    def fun1():
+        name1 = 'wanghongchang'
+        list1 = [1,2,3,4]
+
+        # 声明一个内部函数
+        def fun_inner():
+            print(name1) # 这里使用的是内部变量 name1,为了与全局变量进行区分,变量名就尽量不要相同了
+           # global name # 声明这里需要使用全局的那个名称
+            print(name,list1)
+
+        # 调用一个内部函数
+        fun_inner()
+
+    # 调用函数
+    fun1() 
+    # 运行结果
+      wanghongchang
+      liujia [1, 2, 3, 4]
+      
+      
+================================================================      
+      
+      2. 关于函数的 全局变量 和 局部变量 的使用
+      
+              #1.声明一个全局变量
+              a = 100
+              print(globals()) # { ..这里还有好多的内容....,'a': 100}
+
+              #2.声明一个函数
+              def func2():
+                  #2.1 声明一个局部变量
+                  b = 200
+                  #2.2 声明一个内部函数
+                  def inner_func2():
+                      c = 300
+                      #1. 修改自己内部的变量，OK，没有问题
+                      c += 100
+                      #2. 修改外部函数的局部变量，需要添加关键字 nonlocal
+                      nonlocal b
+                      b += 100
+                      #3. 修改全局的变量，需要添加关键字global
+                      global a
+                      a += 100
+                      print(a,b,c)
+                  #2.3 调用一个内部函数
+                  inner_func2()
+                  #2.4 打印一下此函数 的内部 变量
+                  print(locals()) # {'inner_func2': <function func2.<locals>.inner_func2 at 0x0000000002387940>, 'b': 300}
+
+              #3.调用一个函数
+              func2()

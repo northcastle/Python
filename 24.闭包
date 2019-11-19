@@ -31,3 +31,37 @@
       func_inner = func_sum_out(10,35)
       #5.调用内部函数，直接加个括号就可以
       func_inner() # sum =  145
+==================================================================================================================
+
+'''
+    闭包的作用 :
+        1.可以使用相同的作用域
+        2.读取其他元素的内部变量
+        3.延长作用域
+    闭包的缺点 ：
+        1.作用域没有那么直观
+        2.因为内存不会被垃圾回收，所以有一定的内存浪费问题
+    闭包的总结 ：
+        1.闭包看似优化了变量，原来需要类对象完成的工作，闭包也可以完成
+        2.由于闭包引用了外部函数的局部变量，则，外部函数的内存没有释放，消耗内存
+        3.闭包的好处，使代码变得整洁，方便阅读
+        4.闭包是理解装饰器的基础
+
+'''
+
+def func_out():
+    count = 1
+    def func_inner():
+        nonlocal count
+        print('this is the {} time call the inner function'.format(count))
+        count += 1
+    return func_inner
+
+x = func_out() # 这就获取到了这个闭包的内部函数
+
+# 对于下面的结果，自己可以好好理解一下，真的不好理解
+x()  # this is the 1 time call the inner function
+x()  # this is the 2 time call the inner function
+x()  # this is the 3 time call the inner function
+
+

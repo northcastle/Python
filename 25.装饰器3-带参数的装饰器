@@ -1,0 +1,24 @@
+
+'''
+    装饰器的参数 ： 此时需要给装饰器再套一层，专门用来接收参数的
+'''
+
+def outer(a): # 第一层 : 专门用来 接收参数的
+    def zhuang_3(function_name): # 第二层，常规的装饰器操作
+        def wrapper_innner(): # 第三层，常规的装饰器操作
+            function_name()
+            print('这个房子一共扑了{}块地面砖'.format(a))
+        return wrapper_innner
+
+    return zhuang_3 # 最后把第二层的这个函数返回出去
+
+@outer(100) # 在添加装饰器的时候，把参数放进来就ok了
+def street():
+    print('这里是经海三路118号')
+
+
+street()
+
+运行结果 ：
+这里是经海三路118号
+这个房子一共扑了100块地面砖

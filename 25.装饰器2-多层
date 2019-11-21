@@ -1,0 +1,45 @@
+
+'''
+    多层装饰器 ： 按照就近原则的流程进行执行
+'''
+def zhuang_1(func_name):
+    print('-----------zhuang 1 begin')
+
+    def wrapper_1():
+        func_name()
+        print('第一个装修：安装了空调')
+
+    print('-----------zhuang 1 end')
+    return wrapper_1
+
+
+
+
+def zhuang_2(func_name):
+    print('-----------zhuang 2 begin')
+
+    def wrapper_2():
+        func_name()
+        print('第二个装修：安装了超豪华的电脑')
+
+    print('-----------zhuang 2 end')
+    return wrapper_2
+
+
+
+
+@zhuang_1
+@zhuang_2
+def house():
+    print('这是一个简单的房子')
+
+house()
+
+运行结果 ： 
+-----------zhuang 2 begin
+-----------zhuang 2 end
+-----------zhuang 1 begin
+-----------zhuang 1 end
+这是一个简单的房子
+第二个装修：安装了超豪华的电脑
+第一个装修：安装了空调

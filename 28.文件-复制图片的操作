@@ -1,0 +1,32 @@
+
+'''
+    文件复制的操作 ：
+        1.读文件，
+        2.写文件
+        3. with open() as stream : 此格式可以自动的释放流的资源，
+'''
+#3.1 先把文件读出来
+    with open('D:\DDevWorkspace\workspacePython\python_file_practice\IMG_3455.JPG','rb') as stream_r:
+        content = stream_r.read()
+#3.2 再把文件写出去
+    with open('D:\DDevWorkspace\workspacePython\python_file_practice\IMG_3455_copy.JPG','wb') as stream_w:
+        stream_w.write(content)
+        
+    print('图片复制完成！')
+
+print('*'*30)
+
+
+
+#3.3 *******************进阶操作 ： 把上面的复制图片的操作封装成一个方法*****************
+def copy_picture(file_in,file_out):
+    with open(file_in, 'rb') as stream_r:
+        content = stream_r.read()
+
+    with open(file_out, 'wb') as stream_w:
+        stream_w.write(content)
+    print('图片复制完成！')
+
+file_in = 'D:\DDevWorkspace\workspacePython\python_file_practice\IMG_3455.JPG'
+file_out = 'D:\DDevWorkspace\workspacePython\python_file_practice\IMG_3455_copy_2.JPG'
+copy_picture(file_in,file_out)

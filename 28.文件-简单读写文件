@@ -1,0 +1,48 @@
+'''
+    文件操作 ：
+        1. open(path/filename,'r/w/rt/rb/wb') : 打开文件的方法；返回值是一个流 ，stream
+        2. stream.read() : 读取文件中的内容，并且返回，
+        3. stream.reable() : 判断是否可读的
+        4. stream.readLine() : 读一行的
+        5. stream.readlines() ：读多行的
+        6. 写的操作也是同样的方法，
+'''
+#1.1读一个txt文件的内容,rt 模式下，不需要 encoding 参数
+    stream = open(r'D:\DDevWorkspace\workspacePython\python_file_practice\a.txt','rt')
+    print(stream) # stream 就返回了这个文件的流:
+    #<_io.TextIOWrapper name='D:\\DDevWorkspace\\workspacePython\\python_file_practice\\a.txt' mode='rt' encoding='UTF-8'>
+    content = stream.read() # read() 方法就返回了文本文件中的内容
+    print(content) # 打印一下文本文件中的内容
+    # 运行结果 :
+    #     hello python
+    #    你好Python  哈哈哈
+    readable = stream.readable() # 返回结果是 True or False ,判断文件是否是可读的
+    readline = stream.readline() # 返回结果是 读了一行，默认最后添加了一个换行符
+    readlines = stream.readlines() # 返回结果是 一个列表，元素是每一行的内容
+
+print('*'*30)
+
+#1.2 读取一个doc文件,这样可以读出来，但是 编码会有问题
+    stream2 = open(r'D:\DDevWorkspace\workspacePython\python_file_practice\b.docx','rb',buffering=1024)
+    print(stream2)
+    content2 = stream2.read()
+    print(content2)
+
+    print('*'*30)
+    
+===============================================================================================
+
+#2.1 写一个 txt文件 : w 就是 删除掉 原来的内容，重新写入新的内容
+    stream_w = open(r'D:\DDevWorkspace\workspacePython\python_file_practice\b.txt', 'w')
+    writable = stream_w.writable() # 判断是否可写的
+    print(writable) # True
+    write = stream_w.write('adfadhello 我的宝贝') # 返回的结果是写的字符串的长度
+    print(write) # 15
+
+#2.2 写一个 txt文件 : a,是在文件的末尾处追加内容
+    steam_w1 = open(r'D:\DDevWorkspace\workspacePython\python_file_practice\b1.txt', 'a')
+    steam_w1.write(r'123\n')
+    steam_w1.write(r'456\n')
+    steam_w1.write('**************\n')
+
+print('*'*30)

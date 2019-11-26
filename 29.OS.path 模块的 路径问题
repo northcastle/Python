@@ -1,0 +1,75 @@
+'''
+    OS.path 模块 ：对路径的操作
+        1.需要导入这个模块  import os
+        2.判断类的方法 ：
+            2.1  os.path.isabs(path) 判断是否是绝对路径
+            2.2  os.path.isdir(file_path) : 判断是不是文件夹,且是系统存在的文件夹
+            2.3  os.path.isfile(file_path) : 判断是不是文件,当然，只有当此文件存在的时候才能判断
+        3.其他的方法 ： 获取路径，分割文件目录 ，文件名，文件后缀名，文件大小，拼接文件路径 等
+            3.1 os.path.dirname(file_path) 获取路径 : 获取到的是文件夹的目录
+            3.2 os.path.abspath(相对路径) ： 获取给定文件的 绝对路径
+            3.3 os.getcwd() : 同样是获取当前文件的文件加的方法，与 os.path.dirname(__file__) 是一样的
+            3.4 os.path.split(path) 分割文件目录 与文件名的方法,返回是一个元组
+            3.5 os.path.splitext(path) : 分割的的文件后缀名 ， 返回是一个元组
+            3.6 os.path.getsize(file) : 返回文件的大小，单位是字节
+            3.7 os.path.join() : 拼接路径,只是简单的拼接字符串，无脑拼接
+
+'''
+
+import os
+
+#2.1  os.path.isabs(path) 绝对路径的判断
+    isabs = os.path.isabs(r'd:\a\b\a.jpg')
+    print(isabs) # True
+
+#2.1 相对路径  ： 以当前文件为基准进行的路径判断
+    path_isabs = os.path.isabs('Study06File.py') # 此文件与当前
+    print(path_isabs) # False
+    os_path_isabs = os.path.isabs('../code/testPath.py') # ../ 表示 当前文件的上一级目录
+    print(os_path_isabs) # False
+
+#2.2 os.path.isdir(file_path) : 判断是不是文件夹,且是存在的文件夹
+    isdir = os.path.isdir(r'D:\DDevWorkspace\workspacePython\project01_base')
+    print(isdir) # True
+
+#2.3 os.path.isfile(file_path) : 判断是不是文件,当然，只有当此文件存在的时候才能判断
+    isfile = os.path.isfile(r'D:\DDevWorkspace\workspacePython\project01_base\code\testPath.py')
+    print(isfile) # True
+
+
+#3.1 os.path.dirname(file_path) 获取路径 : 获取到的是文件夹的目录
+    dirname = os.path.dirname(r'd:\a\b\a.jpg')
+    print(dirname) # d:\a\b
+    path_dirname = os.path.dirname(__file__) # 前后两个下划线，表示 当前文件
+    print(path_dirname) # D:/DDevWorkspace/workspacePython/project01_base
+
+#3.2 os.path.abspath(相对路径) ： 获取给定文件的 绝对路径
+    abspath = os.path.abspath('code/testPath.py')
+    print(abspath) # 该文件的 绝对路径  D:\DDevWorkspace\workspacePython\project01_base\code\testPath.py
+
+#3.3 os.getcwd() : 同样是获取当前文件的文件加的方法，与 os.path.dirname(__file__) 是一样的
+    getcwd = os.getcwd()
+    print(getcwd) # D:\DDevWorkspace\workspacePython\project01_base
+
+
+
+#3.4 os.path.split(path) 分割文件目录 与文件名的方法,返回是一个元组
+    path = 'D:\DDevWorkspace\workspacePython\project01_base\code\\testPath.py'
+    split = os.path.split(path) # 注意 path 的文件名前面的反斜杠需要转义一下才可以
+    print(split) # 结果是一个元组 ：('D:\\DDevWorkspace\\workspacePython\\project01_base\\code', 'testPath.py')
+    print(split[1]) # 这就是文件名 ：  testPath.py
+
+#3.5 os.path.splitext(path) : 分割的的文件后缀名 ， 返回是一个元组
+    path = 'D:\DDevWorkspace\workspacePython\project01_base\code\\testPath.py'
+    splitext = os.path.splitext(path)
+    print(splitext) # ('D:\\DDevWorkspace\\workspacePython\\project01_base\\code\\testPath', '.py')
+    print(splitext[1]) # 文件的类型 ：  .py
+
+#3.6 os.path.getsize(file) : 返回文件的大小，单位是字节
+    path = 'D:\DDevWorkspace\workspacePython\project01_base\code\\testPath.py'
+    getsize = os.path.getsize(path)
+    print(getsize) # 6,说明该文件的大小是 6个字节
+
+#3.7 os.path.join() : 拼接路径,只是简单的拼接字符串，无脑拼接
+    join_path = os.path.join(r'd:\a\b', 'file.jpg', 'a.jpg')
+    print(join_path) # d:\a\b\file.jpg\a.jpg

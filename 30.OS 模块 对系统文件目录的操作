@@ -1,0 +1,59 @@
+
+'''
+    OS 模块 : 对系统的操作
+        1. 对目录的操作
+            1.1 os.getcwd() : 获取当前的目录
+            1.2 os.path.exists(path) 判断 文件/目录 是否已经存在了
+            1.3 os.chdir(path) 切换当前操作目录:前提是 ，要切换的目录是存在的！
+        2. 对文件的操作
+            2.1 os.listdir(path) 获取文件目录下的所有文件名称,返回值是一个列表
+            2.2 2.2 os.remove(path) 删除文件的方法
+        3. 对文件夹（目录的操作）
+            3.1 os.mkdir(path) 创建一个文件夹,如果已经存在了，则，会报出异常 ： 文件已存在，并且阻塞下面的程序执行
+            3.2 os.rmdir(path) 删除一个文件夹 ： 并且删除的文件夹只能是空文件夹才ok
+            3.3 故 想删除 非空的文件夹的方法 ： 
+                1.先获取文件夹中的所有内容；
+                2.把文件一个一个的删除；
+                3.把空文件夹删除
+            
+'''
+
+#1.1 os.getcwd() : 获取当前的目录
+    os_getcwd = os.getcwd()
+    print(os_getcwd) # D:\DDevWorkspace\workspacePython\project01_base
+
+#1.2 os.path.exists(path) 判断 文件 是否已经存在了
+    path = 'D:\DDevWorkspace\workspacePython\project01_base\\dd'
+    exists = os.path.exists(path)
+    print(exists) # True
+
+#1.3 os.chdir(path) 切换目录:前提是 ，要切换的目录是存在的！
+    os.chdir(r'd:\a\b')
+    aa = os.getcwd()
+    print(aa)
+
+#2.1 os.listdir(path) 获取文件目录下的所有文件名称,返回值是一个列表
+    path = 'D:\DDevWorkspace\workspacePython\project01_base'
+    listdir = os.listdir(path)
+    print(listdir) # 只返回一级的目录，如果有子文件，是不会被返回来的
+    #['.idea', 'a_for.py', 'code', 'Study01BiBao.py', 'Study01Function.py',
+    # 'Study03Decorate.py', 'Study04NimingFunction.py', 'Study05DiguiFunction.py',
+    # 'Study06File.py', 'Study07OS.py', 'venv']
+
+#2.2 os.remove(path) 删除文件的方法
+    path = 'D:\DDevWorkspace\workspacePython\project01_base\code\\testPath.py'
+    os.remove(path)
+    print('文件删除成功!')
+
+#3.1 os.mkdir(path) 创建一个文件夹,如果已经存在了，则，会报出异常 ： 文件已存在，并且阻塞下面的程序执行
+# 在创建前 可以先判断一下 该目录是否已经存在 os.path.exists(path)
+    path = 'D:\DDevWorkspace\workspacePython\project01_base\\dd'
+    os.mkdir(path)
+    print('文件夹创建成功')
+
+#3.2  os.rmdir(path) 删除一个文件夹 ： 并且删除的文件夹只能是空文件夹才ok
+    path = 'D:\DDevWorkspace\workspacePython\project01_base\\dd'
+    os.rmdir(path)
+    print('文件夹删除成功')
+
+#3.3  故 想删除 非空的文件夹的方法 ： 1.先获取文件夹中的所有内容；2.把文件一个一个的删除；3.把空文件夹删除

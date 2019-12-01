@@ -1,0 +1,103 @@
+下面两个方法是我自己写的，可以直接拿来用的
+
+'''
+    this file will create two function
+        1.function 1 : copy one file
+        2.function 2 : copy one directory
+
+    Notes :
+        the following two functions's params(means the file's folder) are must be exist
+        or it will throw exceptions
+
+'''
+
+import os
+
+def coyp_file(resource_path,distination_path):
+    '''
+        copy one file to another path
+    :param resource_path: 'D:\a\b\c\\a.txt'
+    :param distination_path: 'D:\a\b\c\\a_copy.txt'
+    :return:if copy success ,return True ,otherwise return False
+
+    Notes: pay attention to the correct format of path  :
+            correct : 'D:\a\b\c\\a.txt' or r'D:\a\b\c\a.txt'
+            wrong : 'D:\a\b\c\a.txt'
+    '''
+
+    #step 1 : judge the resource_path is existed
+    #step 2 : if it's exist then read it ,else print doesn't exist
+    #step 3 : judge the distination_path
+    #step 4 : if this file exist then ask weather override it or not,Y/N
+    #step 5 : if Y then override it ,other print it's already existed
+    #step 6 : write it
+    print('resource file : ',resource_path)
+    print('distination file : ',distination_path)
+    print("*"*30)
+
+    file_in_exists = os.path.exists(resource_path)
+    if file_in_exists:
+        file_out_exists = os.path.exists(distination_path)
+        if not file_out_exists:
+            with open(resource_path,'rb') as read_stream:
+                content = read_stream.read()
+            with open(distination_path,'wb') as write_stream:
+                write_stream.write(content)
+            print('Copy {} Finished!'.format(resource_path))
+            return True
+        else:
+            is_override = input('Are you sure to override this existed file？[Y/N]')
+            if is_override.lower() == 'y':
+                with open(resource_path, 'rb') as read_stream:
+                    content = read_stream.read()
+                with open(distination_path, 'wb') as write_stream:
+                    write_stream.write(content)
+                print('Copy {} Finished!'.format(resource_path))
+                return True
+            else:
+                print('Skip override this file!')
+                return False
+    else:
+        print('The file {} is not exists!'.format(resource_path))
+        return False
+
+
+# call the function of coyp file
+# a_path = 'D:\DDevWorkspace\workspacePython\python_file_practice\\a.txt'
+# b_path =  'D:\DDevWorkspace\workspacePython\python_file_practice\\a1_copy.txt'
+# coyp_file(a_path,b_path)
+
+def copy_dir(resource_path,distination_path):
+    '''
+        copy a file_folder
+    :param resource_path: 'D:\a\b\c'
+    :param distination_path: 'D:\a\b\d'
+    :return: if copy success ,return True ,otherwise return False
+    '''
+    # step 1 : judge the resource_path is existed
+    # step 2 : if it's not exist then  print file_folder doesn't exist and return False
+    # step 3 : if it's exist then go into it and get all files's name list
+    # step 4 : loop through each file and write to the distination folder
+    #          this step will call copy_file function **
+    # step 5 : write it
+
+    file_folder_in_exist = os.path.exists(resource_path)
+    if file_folder_in_exist:
+        file_names_list = os.listdir(resource_path)
+        for file_name in file_names_list:
+            file_name_completed_in = r'\\'.join([resource_path,file_name])
+            file_name_completed_out = r'\\'.join([distination_path,file_name])
+            #print('copy folder  : ',file_name_completed_in)
+            #print('copy folder  : ',file_name_completed_out)
+            #call copy _file function
+            coyp_file(file_name_completed_in,file_name_completed_out)
+        return True
+    else:
+        print("The source folder isn't existed")
+        return False
+
+
+# call the function of coyp folder
+a_path = 'D:\DDevWorkspace\workspacePython\python_file_practice'
+b_path =  'D:\DDevWorkspace\workspacePython\python_file_practice_copy'
+copy_dir(a_path,b_path)

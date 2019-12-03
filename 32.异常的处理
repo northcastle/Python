@@ -1,0 +1,215 @@
+
+'''
+    异常的相关操作 ：
+        1.异常处理的几种固定格式：
+            1.1 try -- except --
+            1.2 try -- except ValueError -- except -- ...(可以写好多个except)
+            1.3 try -- except -- except Exception as err : print(err) : 获取具体的错误类型
+            1.4 try -- except -- else -- : 当没有错误的时候会执行else内的代码块
+            1.5 try -- except -- finally -- : 无论有没有错误抛出，都会执行的代码块
+
+        2.手动抛出异常的操作：
+            raise Exception('错误的提示信息')
+
+'''
+
+
+
+
+
+# 这是一个求和的函数
+def add(a,b):
+    return a+b
+
+#1. 正常调用,没有异常的情况
+    a = int(input('请输入第一个数 ：'))
+    b = int(input('请输入第二个数 ：'))
+    sum = add(a, b)
+    print('两个数的和是 {}'.format(sum))
+    
+'''
+运行结果是 ： 
+    请输入第一个数 ：100
+    请输入第二个数 ：200
+    两个数的和是 300
+'''
+
+**********************************
+
+#2. 当输入的不是数字的时候就会报错
+    a = int(input('请输入第一个数 ：'))
+    b = int(input('请输入第二个数 ：'))
+    sum = add(a, b)
+    print('两个数的和是 {}'.format(sum))
+
+'''
+运行结果 ： 
+    请输入第一个数 ：a
+    Traceback (most recent call last):
+    File "H:/PythonWorkSpace/com/whc/project/ExceptionStydy.py", line 32, in <module>
+    a = int(input('请输入第一个数 ：'))
+    ValueError: invalid literal for int() with base 10: 'a'
+    
+    当输入的不是一个数字类型的时候，就会爆出错误： ValueError
+'''
+
+==================================================================
+
+
+'''
+    3.  处理错误的格式1 ： try -- except --
+        try ： 包含可能抛出异常的代码块
+        except : 当try 中抛出异常时，执行except中的代码块
+        可以保证 后面的代码块可以正常执行
+        缺点 ：只能知道 抛出了一场，但不知道是什么错误。
+'''
+    try:
+        a = int(input('请输入第一个数 ：'))
+        b = int(input('请输入第二个数 ：'))
+        sum = add(a, b)
+        print('两个数的和是 {}'.format(sum))
+    except:
+        print('出错了！')
+
+    print('出错之后，后面的程序可以正常执行')
+
+'''
+运行结果：
+    请输入第一个数 ：a
+    出错了！
+    出错之后，后面的程序可以正常执行
+'''
+
+=================================================
+
+
+'''
+    4. try -- except xxxError -- except xxError -- excepr --
+        except xxxError : 可以指明具体的错误匹配
+'''
+    try:
+        a = int(input('请输入第一个数 ：'))
+        b = int(input('请输入第二个数 ：'))
+        sum = add(a, b)
+        print('两个数的和是 {}'.format(sum))
+    except ValueError:
+        print('输入的值有错误')
+    except:
+        print('不知道是什么错误')
+
+    print('出错之后，后面的程序可以正常执行')
+
+'''
+运行结果 ：
+    请输入第一个数 ：a
+    输入的值有错误
+    出错之后，后面的程序可以正常执行
+'''
+
+
+=================================================
+
+'''
+    5.try -- except Exception as err : print(err)
+        直接打印出报错的信息
+'''
+
+try:
+    a = int(input('请输入第一个数 ：'))
+    b = int(input('请输入第二个数 ：'))
+    sum = add(a, b)
+    print('两个数的和是 {}'.format(sum))
+except Exception as  err:
+    print(err)
+
+
+print('出错之后，后面的程序可以正常执行')
+
+'''
+运行结果 ：
+    请输入第一个数 ：a
+    invalid literal for int() with base 10: 'a' 这就是那个自己报出来的错误提示信息
+    出错之后，后面的程序可以正常执行
+'''
+====================================================
+
+'''
+    6.try -- except -- else :
+        else : 当没有错误的时候会执行的代码块
+               但是，当 try 代码块中 包含 return 的时候，是不会执行else 中的代码块的
+'''
+
+try:
+    a = int(input('请输入第一个数 ：'))
+    b = int(input('请输入第二个数 ：'))
+    sum = add(a, b)
+    print('两个数的和是 {}'.format(sum))
+except Exception as  err:
+    print(err)
+else:
+    print('太棒了，没有错误！')
+
+print('出错之后，后面的程序可以正常执行')
+
+'''
+运行结果 ：
+    请输入第一个数 ：1
+    请输入第二个数 ：2
+    两个数的和是 3
+    太棒了，没有错误！
+    出错之后，后面的程序可以正常执行
+'''
+
+====================================================
+
+'''
+    7. try -- except -- finally --
+'''
+
+try:
+    a = int(input('请输入第一个数 ：'))
+    b = int(input('请输入第二个数 ：'))
+    sum = add(a, b)
+    print('两个数的和是 {}'.format(sum))
+except Exception as  err:
+    print(err)
+finally:
+    print('无论有没有错误，我都会执行finally！')
+
+print('出错之后，后面的程序可以正常执行')
+
+'''
+执行结果：
+    请输入第一个数 ：11
+    请输入第二个数 ：A
+    invalid literal for int() with base 10: 'A'
+    无论有没有错误，我都会执行finally！
+    出错之后，后面的程序可以正常执行
+'''
+
+====================================================
+
+
+'''
+    8.raise Exception('错误的提示信息 ： ')
+        手动抛出异常
+'''
+try:
+    username = 'aa';
+    if username == 'admin':
+        print('登陆成功')
+    else:
+        raise Exception('用户名错误！')
+except Exception as err:
+    print(err)
+finally:
+    print('程序都会执行完毕')
+    
+'''
+运行结果：
+    用户名错误！
+    程序都会执行完毕 
+'''
+
+
+

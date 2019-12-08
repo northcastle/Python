@@ -1,0 +1,41 @@
+
+'''
+    生成器的应用 : 协程中会用到
+'''
+#4.1 定义第一个task
+def task1(n):
+    i = 0
+    while i < n :
+        print('task1 : ',i)
+        i += 1
+        yield
+
+#4.2 定义第二个task
+def task2(n):
+    i = 0
+    while i < n :
+        print('task2 : ',i)
+        i += 1
+        yield
+
+
+#4.3 获取两个生成器
+g6_1 = task1(5)
+g6_2 = task2(5)
+for i in range(5):
+    g6_1.__next__()
+    g6_2.__next__()
+
+'''
+运行结果 ： 两个程序交替进行着跑 
+task1 :  0
+task2 :  0
+task1 :  1
+task2 :  1
+task1 :  2
+task2 :  2
+task1 :  3
+task2 :  3
+task1 :  4
+task2 :  4
+'''

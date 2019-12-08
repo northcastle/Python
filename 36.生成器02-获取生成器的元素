@@ -1,0 +1,130 @@
+
+'''
+    使用生成器的三种方式 ：
+        1. 生成器对象的自己的方法：__next__()[下划线是两个短横线]
+        2. 系统内置函数 ： next(g)
+        3. 生成器对象的自己的方法 ： send()
+'''
+
+#1. 创建一个生成 斐波那契数列的生成器
+    def g_fib(len):
+        a,b = 0,1
+        n = 1
+        while n < len+1:
+            print('The ', n, ' b is : ',b)
+            yield b # 1.在这里暂停，2.将b的值作为本次的元素进行返回
+            a,b = b,a+b
+            n += 1
+    # 当获取元素的次数超过生成器可以生成的元素的个数时候，返回的信息
+    return '没有更多的元素了！'
+
+#2.0 拿到一个生成器
+    g3 = g_fib(5)
+
+#2.1 使用 自带的方法获取元素
+    print('use generator get element : ',g3.__next__())
+    print()
+    print('use generator get element : ',g3.__next__())
+    print()
+    print('use generator get element : ',g3.__next__())
+    print()
+    print('use generator get element : ',g3.__next__())
+    print()
+    print('use generator get element : ',g3.__next__())
+    print()
+
+    print('use generator get element : ',g3.__next__()) # 当次数超过生成器的次数的时候 ： StopIteration: 没有更多的元素了！
+    print()
+
+'''
+运行结果 :
+    The  1  b is :  1
+    use generator get element :  1
+
+    The  2  b is :  1
+    use generator get element :  1
+
+    The  3  b is :  2
+    use generator get element :  2
+
+    The  4  b is :  3
+    use generator get element :  3
+
+    The  5  b is :  5
+    use generator get element :  5
+'''
+
+# 2.2 使用系统内置函数 next() 获取元素
+g4 = g_fib(6)
+
+print(next(g4))
+print()
+print(next(g4))
+print()
+print(next(g4))
+print()
+print(next(g4))
+print()
+print(next(g4))
+print()
+print(next(g4))
+print()
+
+print(next(g4)) # StopIteration: 没有更多的元素了！
+print()
+
+'''
+运行结果：
+    The  1  b is :  1
+    1
+    
+    The  2  b is :  1
+    1
+    
+    The  3  b is :  2
+    2
+    
+    The  4  b is :  3
+    3
+    
+    The  5  b is :  5
+    5
+    
+    The  6  b is :  8
+    8
+'''
+
+
+
+#3.0 创建一个生成器
+  def g_func():
+      i = 0
+      temp = None
+      while i < 5:
+          temp = yield  # 1.在这里暂停；2.将生成的值返回；3.将生成的值给了temp变量
+          print('this is  ',i , ' temp : ',temp)
+          i += 1
+      return '没有更多的元素了'
+
+#3.1 获取一个生成器对象
+  g5 = g_func()
+  
+#3.2 使用 send方法获取元素
+#1.必须先调用一次send(None)方法，否则报错
+    g5.send(None)
+    n1 = g5.send('hello') # 可以把参数传递进函数中进行使用！
+    n2 = g5.send('world') # send() 方法好像没有返回值
+    print(n1)
+    print(n2)
+
+'''
+运行结果 ： 
+    this is   0  temp :  hello
+    this is   1  temp :  world
+    None
+    None
+'''
+
+
+
+

@@ -1,0 +1,47 @@
+'''
+    类中的方法：
+        1.方法的种类：普通方法 类方法 静态方法 魔术方法
+        2.普通方法的格式:
+            def 方法名（self[,param1,param2,...]）:
+                pass
+        3.参数self是什么？
+            答 ： self 就是 调用 的对象自己本身！
+                作用 : 可以通过self 来获取对象的属性等内容
+                默认 : 当创建一个方法的时候，默认就会有self这个参数
+        
+'''
+    class Phone:
+        brand = '---'
+        color = '---'
+        price = 0
+
+        def call(self, *args, **kwargs):
+            print(self) # 此处打印的就是调用的那个对象
+            print(self.brand) # 通过self来获取对象的属性
+            print(self.brand,' : 正在打电话')
+
+    phone_A = Phone()
+    print(phone_A,'----A----')
+    phone_A.brand = 'HuaWei'
+    phone_A.call()
+    
+    
+'''
+Operation results :
+    <__main__.Phone object at 0x000001A37FF4ABE0> ----A----
+    <__main__.Phone object at 0x000001A37FF4ABE0>
+    HuaWei
+    HuaWei  : 正在打电话
+'''
+
+    phone_B = Phone()
+    print(phone_B,'----B----')
+    phone_B.brand = 'XiaoMi'
+    phone_B.call()
+'''
+Operatioin result：
+    <__main__.Phone object at 0x000001A43C9496A0> ----B----
+    <__main__.Phone object at 0x000001A43C9496A0>
+    XiaoMi
+    XiaoMi  : 正在打电话
+'''

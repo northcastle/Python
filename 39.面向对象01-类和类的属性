@@ -1,0 +1,59 @@
+'''
+    0.面向对象-类
+        0.1 声明类的格式 ：
+            class 类名[(父类)]:
+                属性
+                方法
+        0.2 类名的要求：
+            0.2.1 类名首字母大写
+            0.2.2 类名使用驼峰命名法
+
+    1.类的属性：
+        python 中的类的对象的属性，可以动态的添加
+
+    2.创建对象
+        格式 ： 对象名 = 类名()
+
+    3. 对象使用属性 ： 对象名.属性名
+    4. 对象添加属性：
+        4.1 使用赋值的形式，修改类中的已经存在的属性
+        4.2 直接给当前的对象新增了一个类中没有的属性
+        4.3 规则:
+            4.3.1 对象，先找自己空间中的属性，然后再去找模型（类）中的属性
+            4.3.2 如果自己空间中存在属性（即通过赋值的形式修改或添加了一个属性），
+                    则直接使用，不会去类中查找属性
+
+'''
+
+#1.声明一个Student类
+  class Student:
+      # 1.1 类的属性
+      name = '---'
+      age = 0
+      school = '---'
+
+#1.1 获取类的属性
+  print(Student.name,Student.age,Student.school)
+  # Operation results : --- 0 ---
+
+#1.2 改变类的属性
+  Student.school = '山东省昌乐二中'
+  print(Student.name,Student.age,Student.school)
+  #Operation results : --- 0 山东省昌乐二中
+
+#2.1 创建对象，并获取属性
+  AA = Student()
+  print(AA.name,AA.age,AA.school)
+  #Operation results : --- 0 山东省昌乐二中
+
+#2.2 对象动态的添加(修改类中存在的属性；直接新增一个属性)自己的属性
+  AA.school = '昌乐二中初中部'
+  print(AA.name,AA.age,AA.school)
+  #Operation results : --- 0 昌乐二中初中部
+
+  AA.name = 'wanghongchang'  # 修改类中的已经存在的属性
+  AA.newSchool = 'AA的新的学校' # 直接给当前的对象新增了一个属性
+  print(AA.name,AA.age,AA.school,AA.newSchool)
+  # Operation results : wanghongchang 0 昌乐二中初中部 AA的新的学校
+
+

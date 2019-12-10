@@ -1,0 +1,38 @@
+
+'''
+    类方法：
+        1.特点：
+            1.1 定义需要使用@classmethod装饰器
+            1.2 类方法中参数是类cls,而不是对象self
+            1.3 类方法中只能使用类属性，不能访问对象的属性
+            1.4 类方法中当然也不能调用普通的方法
+            1.5 对象可以调用 类方法
+        2.作用：
+            因为只能访问类属性和类方法，所以可以在对象创建之前执行一些动作！
+'''
+
+class Cat:
+
+    catname = 'cat_name'
+
+    def __init__(self,nickname):
+        self.nickname = nickname
+
+    def run1(self):
+        print('this is run1 method...')
+    def run2(self):
+        self.run1() # 对象方法中调用对象方法，也ok
+        print('this is run2 method...after call run1 method')
+
+    @classmethod
+    def cat_class_method(cls):
+        print('this is class method : cat_class_method')
+        #print(cls.nickname) # 这个不行
+        print(cls.catname) # 这个可以
+
+
+
+    cat1 = Cat('huahua')
+    cat1.run2()
+
+    cat1.cat_class_method()

@@ -1,0 +1,63 @@
+'''
+    相当于初始化方法的  __init__() 方法:
+        这实际上是一个魔术方法，
+        是系统会自动执行的
+
+        作用1： 为 对象 声明 属性，及属性的默认值
+        作用2： 初始化对象的属性（相当于 java中的构造方法）
+'''
+
+#1.没有参数的init 方法
+class Phone:
+    '''
+        此处的init 方法，实际上为每一个对象都创建了两个属性
+        并且属性的默认值都已经赋值好了
+        在后面的方法中都可以使用对象的这两个属性
+    '''
+    def __init__(self):
+        print('---init---')
+        self.brand = 'iphone'
+        self.color = 'black'
+
+    def showPhone(self):
+        print('this is a {} phone,the color is {}'.format(self.brand,self.color))
+
+#1.1 创建对象，并且直接使用对象的属性
+    phone1 = Phone()
+    phone1.showPhone()
+'''
+Operation result :
+    ---init---
+    this is a iphone phone,the color is black
+'''
+
+#1.2 创建对象，并且修改对象的属性，再使用
+    phone2 = Phone()
+    phone2.color = 'red'
+    phone2.showPhone()
+'''
+Operation result:
+    ---init---
+    this is a iphone phone,the color is red   
+'''
+
+
+
+#2.带参数的init 方法
+class PhoneNew:
+    def __init__(self,name,color):
+        self.brand = name
+        self.color = color
+
+    def showPhone(self):
+        print('brand : {}; color ：{}'.format(self.brand,self.color))
+
+ #2.1 在创建对象的时候，值节传入参数进行属性的赋值
+    phone3 = PhoneNew('HuaWei','Green')
+    phone3.showPhone()
+'''
+Operation result :
+    brand : HuaWei; color ：Green
+'''
+
+

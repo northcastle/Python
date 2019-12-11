@@ -1,0 +1,39 @@
+
+'''
+    魔术方法：
+        1.__init__(self,*args,**kwargs):初始化魔术方法
+            作用 ： 初始化对象用的
+        2.__new__(cls):实例化魔术方法
+            作用 ： 实例化对象用的，就是 想内存申请开辟一块空间来创建对象的！
+                    先执行__new__()方法，再执行__init__()方法！
+        3.__new__(): 这个方法不需要参数！（3.6以后的新特性）
+        4.所以整个的流程：
+            4.1 创建这个类
+            4.2 执行__new__()方法，实例化对象（就是创建了这个对象），并返回这个对象的地址
+            4.3 把这个对象的地址传递给__init__()方法，进行对象属性的初始化操作
+            4.4 初始化结束，对象创建完成！
+'''
+
+class Phone4:
+
+    #1. 初始化方法
+    def __init__(self,brand,price):
+        print('----init begin----')
+        self.brand = brand
+        self.price = price
+        print('----init end----')
+
+    #2. 实例化方法
+    def __new__(cls,*args,**kwargs):
+        print('----new begin----')
+        return object.__new__(cls) # 这个位置不需要任何的参数即可
+
+#1.创建一个对象来测试一下
+p4 = Phone4('XiaoMi',4299)
+
+'''
+Operation result:
+    ----new begin----
+    ----init begin----
+    ----init end---- 
+'''

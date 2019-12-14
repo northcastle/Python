@@ -1,0 +1,63 @@
+'''
+    对象属性的私有化：
+        1.在init方法中直接 self.name = 'aa' 这个正常的属性
+        2.在init方法中 self.__name = 'aa' 这个__name 就是一个私有化的属性了
+        3.正常的属性 在 外部 可以直接使用 对象名.属性名 的 方式进行赋值等操作
+        4.私有化属性 不可以在外部 直接使用，必须要通过调用方法的形式进行操作
+        5.私有化的实质 ： 就是给 这个属性在内存中改了一个名字 ：_class__name 的形式
+          可以通过 dir() 这个方法把对象中的内存 内容打印出来看一下就明白了
+        6.私有化属性 getter setter 方法有两种形式
+            6.1 正常的写一个getter setter 方法
+            6.2 使用@property 装饰器，可以使私有属性像正常属性一样使用
+'''
+from typing import Any
+
+
+class Student:
+
+    def __init__(self,name,age,school):
+        self.name = name # 正常的属性
+        self.__age = age # 私有化的属性
+        self.__school = school
+
+    #1.1 定义一个 set 方法： 设置属性
+    def set_age(self,age):
+        self.__age = age
+    #1.2 定义一个 get 方法 ： 获取属性
+    def get_age(self):
+        return self.__age
+
+
+    #2.1 使用装饰器：必须先写 get方法，set方法可以直接使用
+    @property
+    def school(self):
+        return self.__school
+
+    @school.setter # setter 方法 在这里指明是school这个属性的setter方法
+    def school(self,school):
+        self.__school = school
+
+
+    def __str__(self) -> str:
+        return 'name : '+self.name+' ; age ： '+str(self.__age)+' ; school : '+self.__school
+
+
+s = Student('whc',18,'changle')
+print(s)
+#1.使用普通的set 方法 设置属性
+s.set_age(24)
+print(s)
+
+#2.使用 装饰器装饰过后的私有属性
+s.school = 'zoupingyizhong' # 直接像普通属性一样的使用
+print(s)
+'''
+Operation result:
+    name : whc ; age ： 18 ; school : changle
+    name : whc ; age ： 24 ; school : changle
+    name : whc ; age ： 24 ; school : zoupingyizhong
+'''
+
+#下面的dir() 方法可以查看 类 和 对象  内存地址空间中的内容
+print(dir(Student))
+print(dir(s))

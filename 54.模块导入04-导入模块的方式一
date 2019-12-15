@@ -1,0 +1,28 @@
+#1. 使用 import 模块名 的方式导入模块
+import  package01_customize
+
+#1.1 使用模块中的属性
+print(package01_customize.file_name)
+print(package01_customize.file_author)
+print(package01_customize.file_time)
+'''
+Operation result:
+    package01_customize
+    whc
+    2019-12-15
+'''
+
+#1.2 使用模块中的方法
+package01_customize.say_hi('wang hong chang')
+'''
+Operation result:
+    hi wang hong chang
+'''
+
+#1.3 使用模块中的类创建对象，并调用对象中的方法
+file_new = package01_customize.File('new_file.excel','whc')
+file_new.show()
+'''
+Operation result:
+    this is File class and the file is new_file.excel and the author is whc
+'''

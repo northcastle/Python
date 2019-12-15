@@ -1,0 +1,17 @@
+'''
+    引入模块:
+        1.引入模块有两种方式
+            1.1 方式一：import 模块名
+                        import package01_customize
+            1.2 方式二：from 模块名 import 变量名/方法名/类名(如果有多个同一模块的，可以使用逗号分割开来)
+                        from package01_customize import file_name,say_hi,File
+            1.3 方式三：from 模块名 import * （*表示引入模块中 __all__属性中的内容，如果没有，则是全部的内容）
+                        from package01_customize import *
+
+        2.使用导入的模块中的内容：
+            根据导入方式的不同，也有两种形式:
+            2.1 使用 import 模块名 的方式
+                需要使用 模块名.属性名/方法名/类名 的方式来使用模块中的内容
+            2.2 使用 from 模块名 import xxx 的方式
+                直接使用 属性名/方法名/类名 即可，因为导入方式中已经明确指定了
+'''

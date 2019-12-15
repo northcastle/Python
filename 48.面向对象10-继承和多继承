@@ -1,0 +1,119 @@
+'''
+    继承 ：
+        1.父类 抽取出子类中的 共有的属性 和 方法
+        2.子类 继承父类，则有了父类中的属性和方法
+        3.子类 通过 class 字类（父类）：的定义方式继承父类
+        4.子类中可以有自己独有的属性 和 方法
+        5.子类中可以重写父类中的方法，以满足自身的需求
+        6.子类中可以通过 super().方法名 的方式 调用父类中的方法
+'''
+
+#1.定义一个Person父类
+class Person:
+    nameaa = 'aa'
+    #1.1 定义父类中的属性
+    def __init__(self,name,age):
+        self.name = name
+        self.age = age
+
+    #1.2 定义父类中的方法
+    def run(self):
+        print('{} is running...'.format(self.name))
+
+    #1.3 父类  的 toString方法
+    def __str__(self):
+        msg = 'name : {};age : {}'.format(self.name,self.age)
+        return msg
+
+
+#2. 定义一个Student 子类
+class Student(Person):
+
+    #2.1 student 有自己的独有属性 ： clazz班级
+    def __init__(self,name,age,clazz):
+        #通过调用父类的init方法给共有属性 name,age 赋值
+        super(Student, self).__init__(name,age)
+        #给自己独有的属性 班级名称赋值
+        self.clazz = clazz
+
+    # 2.2 重写 父类中的run方法，student自己在跑
+    def run(self,clazz_name): # 这里会抱一个警告，但不会影响运行
+        #可以调用父类中的run方法
+        super().run()
+        #然后再添加或三个自己独有的方法
+        print('{} 的班级是 ： {}'.format(self.name,clazz_name))
+
+
+    #2.3 Student 也有自己独有的方法
+    def exam(self):
+        print('{} 正在进行考试'.format(self.name))
+
+    #2.4 重写 toString 方法
+    def __str__(self):
+        msg = 'name : {};age ： {}；clazz : {}'.format(self.name,self.age,self.clazz)
+        return msg
+
+
+
+
+#创建一个Student对象
+student = Student('whc',24,'Python01')
+print(student)
+print('*'*30)
+student.run('python')
+print('*'*30)
+student.exam()
+
+'''
+Operation result :
+    name : whc;age ： 24；clazz : Python01
+    ******************************
+    whc is running...
+    whc 的班级是 ： python
+    ******************************
+    whc 正在进行考试
+'''
+
+
+'''----------------------------------------'''
+
+'''
+    多继承 ： （了解，一般很少用的吧）
+        1.Python 中支持 多继承的方法
+        2.知道 ： 如果一个类中有两个重名的方法，则后一个会覆盖前一个，
+                没有重载的概念，只有覆盖
+        3.多继承中 需要知道 搜索的原则：
+            import inspect 
+            inspect.getmro(类名)
+            or
+            D.__mro__ 
+            or
+            D.mro() 
+            三种方式查看搜索的原则，这个原则决定了方法 到底调用哪个父类的方法！
+'''
+class A:
+    def test(self):
+        print('AAA')
+class B:
+    def test(self):
+        print('BBB')
+class C:
+    def test(self):
+        print('CCC')
+
+# D 类继承了 A,B,C 三个类
+class D(A,B,C):
+    pass
+
+
+#1.查看D类的搜索原则
+print(D.__mro__)
+# [<class '__main__.D'>, <class '__main__.A'>, <class '__main__.B'>, <class '__main__.C'>, <class 'object'>]
+
+#2.根据上述搜索原则，D的对象在调用 test方法的时候，调用的就是 A类中的test方法
+d = D()
+d.test()
+'''
+Operation result:
+    AAA
+'''

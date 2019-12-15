@@ -1,0 +1,28 @@
+#2. 使用from 模块名 import 属性 的方式
+from package01_customize import *
+
+#2.1 使用模块中的属性
+print(file_name)
+print(file_author)
+print(file_time)
+'''
+Operation result ：
+   package01_customize
+   whc
+   2019-12-15 
+'''
+
+#2.2 使用模块中的方法
+say_hi('liujia')
+'''
+Operation result:
+    hi liujia
+'''
+
+#2.3 使用模块中的类
+new_file2 = File('salary_report.excel','whc')
+new_file2.show()
+'''
+Operation result :
+    this is File class and the file is salary_report.excel and the author is whc
+'''

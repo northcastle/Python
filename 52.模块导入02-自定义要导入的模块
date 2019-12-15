@@ -1,0 +1,53 @@
+
+'''
+    自定义一个模块 ：
+        1. 模块中可以包含 属性
+        2. 模块中可以包含 方法
+        3. 模块中可以包含 类
+        4. *也可以调用方法
+            格式 ： if __name__ == '__main__':
+                        say_hi('whc')
+            说明 : 判断条件的作用是，
+                    1.当在其他py文件中引入此模块的时候，就不必执行这个say_hi(name)方法了
+                    2.__name__是文件的默认属性，
+                        2.1 当执行当前文件的时候，其属性值 为 ： __main__
+                        2.2 当在别的文件中加载此模块的时候，其属性值就不是 __main__了，故就不会执行了
+        5.__all__ 属性 ：
+                1.此属性用来决定，在导入此模块的时候，如果使用的是
+                  from 模块名 import * 的方式的 默认导入的内容有那些
+                
+                2.如果未设置，则默认全部导入
+        
+                                            
+                    
+'''
+
+#0.__all__属性
+#__all__ = ['file_name','file_author','say_hi']
+
+
+#1.属性部分
+file_name = 'package01_customize'
+file_author = 'whc'
+file_time = '2019-12-15'
+
+#2.方法部分
+def say_hello():
+    print('hello ,this is package01_customize file!')
+
+def say_hi(name):
+    print('hi {}'.format(name))
+
+
+#3.类部分
+class File:
+    def __init__(self,file_name,file_author):
+        self.file_name = file_name
+        self.file_author = file_author
+
+    def show(self):
+        print('this is File class and the file is {} and the author is {}'.format(self.file_name,self.file_author))
+
+#4.调用方法部分
+if __name__ == '__main__':
+    say_hi('whc')

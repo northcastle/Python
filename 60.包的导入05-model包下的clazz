@@ -1,0 +1,8 @@
+class Clazz:
+    def __init__(self,clazz_name):
+        self.name = clazz_name
+
+    def __str__(self) -> str:
+        msg = 'clazz : {}'.format(self.name)
+        return msg
+

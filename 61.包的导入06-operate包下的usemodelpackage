@@ -1,0 +1,39 @@
+
+#1.导入model 包 ： 方式任选一种即可
+#1.1 方式一
+from model import student,clazz
+#1.2 方式二
+from model.student import Student
+from model.clazz import Clazz
+
+#2.使用导入的包 中的模块的 内容
+student = Student('whc',24,'python01')
+student.show()
+student.clazz = 'java01'
+student.show()
+
+'''
+Operation result :
+    ---加载 model 包 下的 init 模块---
+    student name : whc,age : 24,clazz : python01
+    student name : whc,age : 24,clazz : java01
+'''
+
+print('*'*30)
+
+
+
+
+#1. 使用 *  的方式导入包
+from model import *
+import model
+#2.使用包中的内容
+xiaoming = student.Student('xiaoming',12,'六年级一班')
+xiaoming.show()
+
+print(model.__all__)
+
+'''
+Operation result : 
+    student name : xiaoming,age : 12,clazz : 六年级一班
+    ['student']

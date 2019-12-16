@@ -1,0 +1,11 @@
+'''
+    案例背景 ：就是这么简单
+        包一 ： |-- model 
+                    |-- clazz.py 
+                        |--class clazz
+                    |-- student.py
+                        |-- class student
+                        
+        包二 ： |-- operate
+                    |--UsePackageModel.py 
+'''

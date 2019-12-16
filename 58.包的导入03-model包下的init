@@ -1,0 +1,3 @@
+print('---加载 model 包 下的 init 模块---')
+
+__all__ = ['student']

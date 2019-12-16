@@ -1,0 +1,38 @@
+class Student:
+    #1. 初始化方法，属性都为私有
+    def __init__(self,name,age,clazz_name):
+        self.__name = name
+        self.__age = age
+        self.__clazz = clazz_name
+
+    #2.私有属性的getter setter 方法
+    @property
+    def name(self):
+        return self.__name
+    @name.setter
+    def name(self,name):
+        self.__name = name
+
+    @property
+    def age(self):
+        return self.__age
+
+    @age.setter
+    def age(self, age):
+        self.__age = age
+
+    @property
+    def clazz(self):
+        return self.__clazz
+
+    @clazz.setter
+    def clazz(self, clazz):
+        self.__clazz = clazz
+
+    #3.两个其他的对象方法
+    def show(self):
+        print('student name : {},age : {},clazz : {}'.format(self.__name,self.__age,self.__clazz))
+
+    def sing(self,songname):
+        print('{} is sing {}'.format(self.__name,songname))
+

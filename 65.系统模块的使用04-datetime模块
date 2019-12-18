@@ -1,0 +1,60 @@
+'''
+    datetime模块:
+        1.time
+        2.date
+
+        3.datetime
+        4.timedelta
+
+        1.2 了解一下即可
+        3.4 进场配合使用，计算使劲按的差值
+'''
+
+import datetime
+
+#1.time
+print(datetime.time.hour)
+print(datetime.time.minute)
+'''
+Operation result : 得到的都是对象，而不是具体的值
+    <attribute 'hour' of 'datetime.time' objects>
+    <attribute 'minute' of 'datetime.time' objects>
+'''
+
+#2.date
+print(datetime.date.day)
+'''
+Operation result： 也是个对象，没啥意思
+    <attribute 'day' of 'datetime.date' objects>
+'''
+
+print(datetime.date.today())
+'''
+Operation result: 这个是今天的日期，感觉直接使用 time模块中的 时间戳-->元组-->字符串 也可以得到，而且还灵活
+    2019-12-18
+'''
+
+
+#3.datetime
+print(datetime.datetime.today()) # 2019-12-18 21:50:00.468636
+print(datetime.datetime.now())  # 2019-12-18 21:50:00.468636
+'''
+Operation result: 这两个方法得到的结果是一致的，了解一下
+   2019-12-18 21:50:00.468636
+   2019-12-18 21:50:00.468636 
+'''
+
+#4.timedelta : 获取时间差的，常与datetime结合使用
+nowtime = datetime.datetime.now()
+deltatime = datetime.timedelta(hours=3)
+new_time = nowtime-deltatime
+print('nowtime : ',nowtime)
+print('deltime : ',deltatime)
+print('new_time : ',new_time)
+'''
+Operation result:
+    nowtime :  2019-12-18 22:02:48.271410 当前的时间
+    deltime :  3:00:00                    Δ 时间，就是时间的差值
+    new_time :  2019-12-18 19:02:48.271410 当前时间-差值时间 得到的 时间，也就是三个小时前 的时间
+'''
+

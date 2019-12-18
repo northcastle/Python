@@ -1,0 +1,52 @@
+'''
+    sys 模块 ：
+        1.查看搜索路径 sys.path
+        2.查看版本 sys.verson
+        3.接收参数 sys.argv : 默认当前文件名就是第一个参数
+            3.1 命令行 ： python xx.py a b(参数)
+            3.2 pycharm : 运行的时候设置Parameters
+'''
+
+import sys
+
+#1.查看搜索路径 sys.path
+path = sys.path
+print(path)
+'''
+Operation result:
+    [
+        'D:\\DDevWorkspace\\workspacePython\\project02_packages\\system_models', 
+        'D:\\DDevWorkspace\\workspacePython\\project02_packages', 
+        'D:\\BDevTools\\QPycharm\\PyCharm 2019.2.4\\helpers\\pycharm_display', 
+        'D:\\BDevTools\\QPython38\\python38.zip', 
+        'D:\\BDevTools\\QPython38\\DLLs', 
+        'D:\\BDevTools\\QPython38\\lib', 
+        'D:\\BDevTools\\QPython38', 
+        'D:\\DDevWorkspace\\workspacePython\\project02_packages\\venv', 
+        'D:\\DDevWorkspace\\workspacePython\\project02_packages\\venv\\lib\\site-packages', 
+        'D:\\DDevWorkspace\\workspacePython\\project02_packages\\venv\\lib\\site-packages\\setuptools-40.8.0-py3.8.egg', 
+        'D:\\DDevWorkspace\\workspacePython\\project02_packages\\venv\\lib\\site-packages\\pip-19.0.3-py3.8.egg', 
+        'D:\\BDevTools\\QPycharm\\PyCharm 2019.2.4\\helpers\\pycharm_matplotlib_backend'
+    ]
+
+'''
+#2.查看版本 sys.verson
+version = sys.version
+print(version)
+'''
+Operation result：
+    3.8.0 (tags/v3.8.0:fa919fd, Oct 14 2019, 19:37:50) [MSC v.1916 64 bit (AMD64)]
+'''
+
+#3.接收参数 sys.argv
+args = sys.argv
+print(args)
+'''
+Operation result:
+    [
+     'D:/DDevWorkspace/workspacePython/project02_packages/system_models/Study_sys.py', 
+     '100', 
+     'aaa', 
+     'basdfe'
+    ]
+'''

@@ -1,0 +1,112 @@
+'''
+    time模块 ：
+        1.获取当前时间的时间戳 ： time.time()
+        2.使程序睡眠一会而 ： time.sleep(second)
+        3.将时间戳转成字符串（按照标准时区来转）
+            time.ctime(time.time())
+        4.***
+            将时间戳转成元组，包含了年月日时分秒等信息，十分好用
+            time.localtime(time.time())
+            可以通过元组对象，分别获取 年，月，日，时，分，秒，星期，第几天等属性
+            tm_year,tm_mon,tm_mday,tm_hour...
+        5.***
+            将元组转成时间戳
+            time.mktime(4中的元组)
+        6.***
+            将元组转成字符串的形式：格式化时间的操作，十分好用
+            time.strftime(格式[,时间元组])
+             %Y  Year with century as a decimal number.
+             %m  Month as a decimal number [01,12].
+             %d  Day of the month as a decimal number [01,31].
+             %H  Hour (24-hour clock) as a decimal number [00,23].
+             %M  Minute as a decimal number [00,59].
+             %S  Second as a decimal number [00,61].
+             常用的格式化的参数 ： 年月日时分秒
+
+        7.***
+            将字符串转成元组
+            time.strptime(字符串,格式)
+
+
+        以上七个方法涉及到了三个对象 ： 时间戳，元组，字符串
+        1.时间戳 ---> 字符串 ： time.ctime(时间戳)
+        2.时间戳 ---> 元组 ： time.localtime(时间戳)
+
+        3.元组 ---> 时间戳 ： time.mktime(元组) 感觉这个就很鸡肋
+        4.元组 ---> 字符串 ： time.strftime(格式[,元组]) ： 格式化时间的方法，十分好用
+
+        5.字符串 ---> 元组 : time.strptime(字符串，格式) ： 将字符串转成时间类型的对象
+
+
+        以上三个对象形成了一个闭环的操作。可以进行相互的转化。
+
+'''
+
+import time
+
+#1+2 的使用 time(),sleep()
+t1 = time.time()
+time.sleep(0)
+t2 = time.time()
+print('begin time : ',t1)
+print('end time : ',t2)
+print('running time : ',t2-t1)
+'''
+Operation result:
+    begin time :  1576673507.2202218
+    end time :  1576673512.2350483
+    running time :  5.014826536178589
+'''
+
+#3.将时间戳转成字符串 time(),ctime()
+t3 = time.time()
+t3_str = time.ctime(t3)
+print('time-string : ',t3_str)
+'''
+Operation result:
+    time-string :  Wed Dec 18 20:53:43 2019
+'''
+
+#4.将时间戳转成元组 time(),localtime()
+t4 = time.time()
+t4_tuple = time.localtime(t4)
+print('time-tuple : ',t4_tuple)
+print('time_typle : year ： ',t4_tuple.tm_year)
+'''
+Operation result:
+    time-tuple :  time.struct_time(tm_year=2019, tm_mon=12, tm_mday=18, tm_hour=20, tm_min=58, tm_sec=16, tm_wday=2, tm_yday=352, tm_isdst=0)
+    time_typle : year ：  2019
+'''
+
+#5.元组转成时间戳，time(),localtime(时间戳),mktime(元组)
+t5 = time.time()
+t5_tuple = time.localtime(t5)
+t5_time = time.mktime(t5_tuple)
+print('t5 : ',t5)
+print('tuple-time : ',t5_time)
+'''
+Operation result ：
+    t5 :  1576674281.3980997 # 这个是原来的时间戳
+    tuple-time :  1576674281.0 # 这个是元组转成的时间戳，小数点少了好几位
+'''
+
+#6.元组转成字符串，time(),localtime(时间戳),strftime(格式)
+t6 = time.time()
+t6_tuple = time.localtime(t6)
+print('t6-tuple : ',t6_tuple)
+
+# 6.1 不写元组参数，默认就是当前时间
+t6_tuple_str_default = time.strftime('%Y-%m-%d %H:%M:%S')
+print('tuple-str default: ',t6_tuple_str_default)
+
+# 6.2 写了元组参数，则格式化的是元组内的时间
+t6_tuple_str_t6 = time.strftime('%Y-%m-%d %H:%M:%S',t6_tuple)
+print('tuple-str t6 : ',t6_tuple_str_t6)
+
+#7. 将字符串转成 元组
+t7_tuple = time.strptime('2018-12-18','%Y-%m-%d')
+print(t7_tuple)
+'''
+Operation result:
+   time.struct_time(tm_year=2018, tm_mon=12, tm_mday=18, tm_hour=0, tm_min=0, tm_sec=0, tm_wday=1, tm_yday=352, tm_isdst=-1)
+'''

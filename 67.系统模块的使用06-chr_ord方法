@@ -1,0 +1,15 @@
+'''
+    chr() : 把Unicode 转成 对应的 字符
+    ord() : 把字符转成对应的 Unicode的值
+    这两个操作时对称的
+'''
+res_str = chr(65)
+res_num = ord('A')
+print(res_str)
+print(res_num)
+
+'''
+Operation result:
+    65---> A
+    A ---> 65
+'''

@@ -1,0 +1,55 @@
+'''
+    ramdom 模块：
+        1.random() : 产生0-1 之间的随机小数
+        2.randrange(start,end[,step]) : 范围之内的随机数
+        3.randint(start,end) : 闭区间
+        4.choice(list) : 随机选择列表中的一个元素
+        5.shuffle(list) : 打乱顺序，比如 洗牌,直接把原来的列表打乱顺序
+        6.小练习 ：
+            通过使用随机模块，产生 n 个字符的验证码
+
+'''
+import random
+
+#1.random()
+res = random.random()
+print(res) # 0.15603561081468287
+
+#2.randrange()
+res = random.randrange(1,10,2)
+print(res) # 上述操作只会产生奇数，没有偶数
+
+#3.randint()
+res = random.randint(1,2);
+print(res) # 1/2 所以 是 闭区间
+
+#4.choice
+list1 = [1,100]
+res = random.choice(list1)
+print(res) # 1/100 随机选择一个的
+
+#5.shuffle
+list2 = [1,2,3,4,5,6]
+random.shuffle(list2);
+print(list2) # [1, 4, 6, 3, 2, 5]
+
+#6. 产生验证码的操作
+def verificationCode(len=4):
+    '''
+    :param len:  verificatioin code's length
+    :return: code
+    '''
+    code = ''
+    for i in range(len):
+        rand_num = str(random.randint(0,9))
+        rand_case_upper = chr(random.randint(65,90)) # ASCII 码 大写字母
+        rand_case_lower = chr(random.randint(97,122)) # ASCII 码 小写字母
+
+        list_code = [rand_num,rand_case_upper,rand_case_lower]
+
+        code += random.choice(list_code)
+    return code
+
+#调用function 产生验证码
+code = verificationCode(5)
+print('code is : ',code)

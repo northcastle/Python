@@ -1,0 +1,18 @@
+'''
+    hashlib模块 : 用来搞加密的操作
+        一个应用 ： 用户登陆的时候设置密码，保存加密之后的密码
+
+    简单了解一下，等以后用到了的时候，再进行详细的了解
+
+'''
+import hashlib
+
+msg_str = 'hello world!'
+msg_code = hashlib.md5(msg_str.encode('utf-8')) # 加密的操作
+print(msg_code.hexdigest()) # 打印加密之后的 数据
+#加密之后就是这样的 ： fc3ff98e8c6a0d3087d515c0473f8677
+
+
+msg_code = hashlib.sha1(msg_str.encode('utf-8'))
+print(msg_code.hexdigest())
+#加密之后就是这样的 ： 430ce34d020724ed75a196dfc2ad67c77772d169

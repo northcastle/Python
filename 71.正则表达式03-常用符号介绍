@@ -1,0 +1,111 @@
+'''
+    正则表达式中的符号使用：
+
+The special characters are:
+    "."      Matches any character except a newline.
+            匹配任意的字符，除了换行符（\n）
+
+    "^"      Matches the start of the string.
+            表示从头开始匹配，效果等同于match方法
+            1.放在模板字符串中，表示从字符串的头开始匹配
+            2.放在[]范围符号中，表示 取反
+
+    "$"      Matches the end of the string or just before the newline at
+             the end of the string.
+             匹配到字符串的结尾或换行符的前面
+
+    "\\"     Either escapes special characters or signals a special sequence.
+            这个是转义字符的匹配，如： 特殊字符 \d ,需要写成 '\\d',
+                但是，如果使用的是 r'\d',则不需要双斜杠 了，
+    []       Indicates a set of characters.
+            表示一个范围 ，如 [a-bA-B0-9_]表示所有的字母数字下划线
+
+             A "^" as the first character indicates a complementing set.
+             如果在[] 里面出现了 ^,表示取的是补集
+             如：[^ABC] 表示除ABC这三个字符之外的其他字符
+
+    \A       Matches only at the start of the string.
+            表示从字符串的开始处理匹配
+
+    \Z       Matches only at the end of the string.
+            表示从字符串的结束处匹配
+
+    \b       Matches the empty string, but only at the start or end of a word.
+            匹配一个单词的边界，即单词和空格间的位置。
+            如 ： 'py\b' 可以匹配 'python'中的 py,因为开始的位置是空的；
+                    不可以匹配 'aapython' 中的py,因为，前后两端都没有空格
+    \B       Matches the empty string, but not at the start or end of a word.
+            匹配非单词的边界 ： 'py\b' 不可以匹配 'python'中的 py,因为开始的位置是空的；
+                    可以匹配 'aapython' 中的py,因为，前后两端都没有空格
+
+    \d       Matches any decimal digit; equivalent to the set [0-9] in
+             bytes patterns or string patterns with the ASCII flag.
+             In string patterns without the ASCII flag, it will match the whole
+             range of Unicode digits.
+             匹配数字
+    \D       Matches any non-digit character; equivalent to [^\d].
+            匹配非数字
+
+    \s       Matches any whitespace character; equivalent to [ \t\n\r\f\v] in
+             bytes patterns or string patterns with the ASCII flag.
+             In string patterns without the ASCII flag, it will match the whole
+             range of Unicode whitespace characters.
+             匹配空白字符
+    \S       Matches any non-whitespace character; equivalent to [^\s].
+            匹配非空白字符
+
+    \w       Matches any alphanumeric character; equivalent to [a-zA-Z0-9_]
+             in bytes patterns or string patterns with the ASCII flag.
+             In string patterns without the ASCII flag, it will match the
+             range of Unicode alphanumeric characters (letters plus digits
+             plus underscore).
+             With LOCALE, it will match the set [0-9_] plus characters defined
+             as letters for the current locale.
+             匹配任意字符 ： 字母数字下划线,不包含 .这个符号
+    \W       Matches the complement of \w.
+            匹配任意非字符
+
+    \\       Matches a literal backslash.
+
+'''
+import re
+
+
+#练习一：匹配所有的  一个字母带数字的 的形式，如 ：a125 N215
+msg = '0a234BC68qe_12GH78'
+res_match = re.findall(r'[a-zA-Z]\d+',msg)
+print(res_match)
+'''
+Operation result:
+    ['a234', 'C68', 'H78']
+'''
+
+#练习二 ：用户名的验证：1.字母数字下划线；2.不能是数字开头；3.最小长度是6位
+username = 'admin_45adbdwe'
+res_match = re.match(r'^[^\d]\w{5,}$',username)
+print(res_match)
+'''
+Operation result：
+    <re.Match object; span=(0, 14), match='admin_45adbdwe'>
+'''
+
+
+#练习三：手机号的匹配
+#1.首位为1；2.11位；3.13，15，17，18，19
+phonenum = '19524561568'
+res_match = re.match(r'^1[35789]\d{9}$',phonenum)
+print(res_match)
+'''
+Operation result：
+   <re.Match object; span=(0, 11), match='19524561568'>
+'''
+
+#练习四 ： 验证邮箱的格式
+#1.@163.com,@qq.com,@139.cn,2.长度不超过20位
+email_address = 'qweemail_address@163.com'
+res_match = re.match(r'^\w{5,20}@(163\.com|139\.cn|qq\.com)$',email_address)
+print(res_match)
+'''
+Operation result：
+   <re.Match object; span=(0, 24), match='qweemail_address@163.com'>
+'''

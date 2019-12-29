@@ -1,0 +1,89 @@
+'''
+    正则表达式中的方法：
+        1.match: 从头开始匹配，只匹配一次
+        2.search：从任意位置匹配，只匹配一次
+        3.findall：查找到所有的
+        4.split: 分割字符串
+        5.sub: 替换匹配上的内容，替换的内容可以是一个function，这样可以进行动态的替换
+
+'''
+import re
+
+#1.match
+msg = 'abc_ABC_1256_ABETS'
+res_match = re.match(r'_AB', msg)
+print(res_match)
+
+'''
+Operation result:
+    None
+    因为match是从字符串的开始位置就开始匹配的，
+    但字符串的开始位置是abc
+    故匹配失败！
+    返回值为None
+'''
+
+#2.search
+msg = 'abc_ABC_1256_ABETS'
+res_match = re.search(r'_AB', msg)
+print(res_match)
+print(res_match.group()) # 这个是匹配到的数据
+print(res_match.span()) # 这个是匹配到的数据再字符串中的位置
+'''
+Operation result:
+    <re.Match object; span=(3, 6), match='_AB'>
+    _AB
+    (3, 6)
+'''
+
+#3.findall
+msg = 'abc_ABC_1256_ABETS'
+res_match = re.findall(r'_AB', msg)
+print(res_match)
+'''
+Operation result:
+    ['_AB', '_AB']
+    找到所有匹配上的内容
+    如果找到，返回值是一个list
+    如果没有找到，返回值为None
+'''
+
+#4.split
+split_match = re.split(r'。','java:99;python:100;spring:101')
+print(split_match)
+'''
+Operation result:
+    ['java:99', 'python:100', 'spring:101']
+    返回的是按照 模板字符串 分割开来的 字符串列表
+    如果没有匹配成功，则返回的仍然是 这一个完整的字符串
+'''
+
+#5.sub
+
+#5.1 直接使用 模板进行匹配
+sub_match1=re.sub(r'\d+','100','java:66,python:45')
+print(sub_match1)
+'''
+Operation result:
+    java:100,python:100
+    把所有匹配成功的数字，都替换成了 替换的内容
+'''
+
+#5.2 使用function 作为替换的内容，进行动态的替换
+def func_replace(tmp):
+    '''
+
+    :param tmp:  这个是被匹配成功的字符串
+    :return: 返回修改过后的字符串
+    '''
+    num = tmp.group() # 获取匹配成功的字符串
+    num_str = num+'_aa'
+    return num_str
+
+sub_match2 = re.sub(r'\d+',func_replace,'java:66,python:45')
+print(sub_match2)
+'''
+Operation result:
+    java:66_aa,python:45_aa
+    所有的数字都被替换成了自己修改果的内容了
+'''

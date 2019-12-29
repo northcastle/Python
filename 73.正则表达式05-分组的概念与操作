@@ -1,0 +1,60 @@
+'''
+    正则表达式中的分组：
+        1.符号 ： () 一个小括号表示一个分组
+            获取分组的结果 group()方法
+        2.给分组标号，并引用 ，引用方式 \标号 如 \1 : 表示引用第一个分组
+        3.给分组起名，并引用
+            3.1 给分组声明名称 (?P<html_name>\w+) ： 在分组的表达式前面添加 ?P<NAME>
+            3.2 使用分组的名称 (?P=h1_name) : 使用 ?P=NAME 即可
+
+        2，3 的好处在于，可以使前后相匹配，前后的内容一致
+'''
+
+import re
+
+#1.分组简单练习
+aa_str= 'asfd-wefa15463ASDF'
+res_match = re.match(r'^(\w+)-(\w+)$',aa_str)
+print(res_match)
+print(res_match.group())
+print(res_match.group(1),res_match.group(2)) # 分别获取第一组的值，第二组的值
+'''
+Operation result:
+    <re.Match object; span=(0, 18), match='asfd-wefa15463ASDF'>
+    asfd-wefa15463ASDF 获取匹配成功的值
+    asfd wefa15463ASDF 根据分组 获取值，
+'''
+
+#2.练习二 : 模拟爬虫爬取网页的操作
+#就要获取标签中的内容 hello world
+# msg = '<html><h1>hello world</h1></html>'
+
+#2.1 使用 标号的形式引用分组
+msg = '<html><h1>hello world</h1></html>'
+res_match = re.match(r'^<(\w+)><(\w+)>(.+)</\2></\1>$',msg)
+                        #组1     组2   组3
+                        #                 引用组2   引用组1
+print(res_match)
+print(res_match.group())
+print(res_match.group(1),res_match.group(2),res_match.group(3))
+'''
+Operation result:
+    <re.Match object; span=(0, 33), match='<html><h1>hello world</h1></html>'>
+    <html><h1>hello world</h1></html>
+    html h1 hello world
+'''
+
+#2.2 使用分组命名的方式 (?P<html_name>\w+) ===> (?P=html_name)
+msg = '<html><h1>hello world with name </h1></html>'
+res_match = re.match(r'^<(?P<html_name>\w+)><(?P<h1_name>\w+)>(.+)</(?P=h1_name)></(?P=html_name)>$',msg)
+                        #组1                   组2             组3
+                        #                                               引用组2        引用组1
+print(res_match)
+print(res_match.group())
+print(res_match.group(1),res_match.group(2),res_match.group(3))
+'''
+Operation result:
+    <re.Match object; span=(0, 44), match='<html><h1>hello world with name </h1></html>'>
+    <html><h1>hello world with name </h1></html>
+     html h1 hello world with name 
+'''

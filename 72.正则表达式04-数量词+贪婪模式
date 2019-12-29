@@ -1,0 +1,46 @@
+'''
+    正则表达式中的量词限定：
+
+
+    "*"      Matches 0 or more (greedy) repetitions of the preceding RE.
+             Greedy means that it will match as many repetitions as possible.
+             >=0
+
+    "+"      Matches 1 or more (greedy) repetitions of the preceding RE.
+            >=1
+
+    "?"      Matches 0 or 1 (greedy) of the preceding RE.
+            0 或者 1 此
+
+    {m,n}    Matches from m to n repetitions of the preceding RE.
+            大于等于m次，小于等于n次
+
+    python中的数量词默认是贪婪的，即总是尝试匹配尽可能多的字符
+    非贪婪 ： 总是尝试匹配尽可能超的字符
+
+    在 * + ？ {m,n} 后面加上 ？ 就可以使贪婪模式转成非贪婪模式
+
+'''
+import re
+
+#1.贪婪模式
+username = 'admin1234a'
+res_match = re.match(r'^[a-z]+\d+', username)
+print(res_match)
+'''
+Operation result:
+    <re.Match object; span=(0, 9), match='admin1234'>
+    模板字符串中中的 \d+ 表示大于等于1个数字即可，但是贪婪模式下，
+    如果当前字符串匹配成功，则会继续寻找下一个，直到找到一个不匹配的为止
+'''
+
+#2.非贪婪模式
+username = 'admin1234a'
+res_match = re.match(r'^[a-z]+\d+?', username)
+print(res_match)
+'''
+Operation result:
+    <re.Match object; span=(0, 6), match='admin1'>
+    模板字符串中中的 \d+ 表示大于等于1个数字即可，
+    非贪婪模式下，如果当前字符串匹配成功，则会停止寻找下一个
+'''

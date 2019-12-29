@@ -1,0 +1,24 @@
+'''
+    正则表达式 ：
+        1.模块 ： re模块
+        2.简单使用 ：
+            2.1 准备字符串
+            2.2 创建匹配模板 compile
+            2.3 执行匹配操作，获取返回值 match/search/findall
+'''
+import re
+
+#1.
+msg = 'wanghongchang123_ADWEDghongh'
+#2.
+pattern = re.compile('ghon')
+#3.
+res = pattern.search(msg)
+
+print(res)
+print(res.group())
+'''
+Operation result:
+   <re.Match object; span=(3, 7), match='ghon'>
+    ghon 
+'''

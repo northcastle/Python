@@ -1,0 +1,43 @@
+'''
+    自定义进程 ：
+        1.继承Process类
+        2.重写run方法
+
+'''
+
+from multiprocessing import Process
+from time import sleep
+
+class MyProcess(Process):
+
+
+    #重写run方法
+    def run(self) -> None:
+
+        n = 1
+        while True:
+            print('{}---自定义进程：{}'.format(n,self.name))
+            n += 1
+
+if __name__ == '__main__':
+    p1 = MyProcess(name='mytask001')
+    p1.start()
+
+    sleep(0.1) # 主进程在这里休眠10秒，
+
+    p1.terminate() # 然后会终止这个线程
+
+'''
+Operation result:
+
+1---自定义进程：mytask001
+2---自定义进程：mytask001
+3---自定义进程：mytask001
+4---自定义进程：mytask001
+5---自定义进程：mytask001
+6---自定义进程：mytask001
+7---自定义进程：mytask001
+8---自定义进程：mytask001
+9---自定义进程：mytask001
+    .......... 还有很多的，这里就不写了
+'''

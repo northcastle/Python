@@ -1,0 +1,87 @@
+'''
+    非阻塞式进程池 ：
+        1.模块导入 ： from multiprocessing import Pool
+        2.创建进程池，并指定线程个数 ： pool = Pool(5)
+        3.创建进程 ： pool.apply_async(task,args=(args1,...),callback=func_callback)
+        4.添加任务结束 ： pool.close()
+        5.阻止主进程结束 ：pool.join()
+'''
+
+from multiprocessing import Pool
+import time
+import random
+import os
+
+
+#1.创建任务用的方法
+def task(task_name):
+    print('开始进程 ： ',task_name)
+
+    start_time = time.time();
+    time.sleep(random.random()*2)
+    end_time = time.time()
+
+    print('结束进程 ：{}，用时 ：{}，进程号 ：{}'.format(task_name,(end_time-start_time),os.getpid()))
+
+    return '完成任务 ： {}'.format(task_name)
+
+#2.线程结束后，回调用的function
+def task_fun(return_msg):
+    print('call_back : ',return_msg)
+    print()
+
+#3.主程序
+if __name__ == '__main__':
+    #3.1 开启一个进程池
+    pool = Pool(5)
+    #3.2 循环的方式启动八个进程
+    tasks = ['看Java','看python','看spring','看mybatis','看linux','看git','看高数','看白居易']
+    for taskname in tasks:
+        pool.apply_async(task,args=[taskname],callback=task_fun) # 启动异步进程，配置参数及回调函数
+
+    #3.3 添加任务结束后关闭进程池
+    pool.close()
+    #3.4 阻止主进程的结束：进程池必须要依赖主进程的
+    pool.join()
+
+    #3.5 所有的都执行完了，则执行主进程的最后一句
+    print('all over !!!')
+
+'''
+Operation result:
+
+开始进程 ：  看Java
+开始进程 ：  看python
+开始进程 ：  看spring
+开始进程 ：  看mybatis
+开始进程 ：  看linux
+结束进程 ：看python，用时 ：0.21205449104309082，进程号 ：10796
+开始进程 ：  看gitcall_back :  
+完成任务 ： 看python
+
+结束进程 ：看git，用时 ：0.5902507305145264，进程号 ：10796
+开始进程 ：  看高数
+call_back :  完成任务 ： 看git
+
+结束进程 ：看Java，用时 ：0.8654100894927979，进程号 ：272
+开始进程 ：  看白居易
+call_back :  完成任务 ： 看Java
+
+结束进程 ：看spring，用时 ：1.4443340301513672，进程号 ：19112
+call_back :  完成任务 ： 看spring
+
+结束进程 ：看linux，用时 ：1.743053913116455，进程号 ：2660
+call_back :  完成任务 ： 看linux
+
+结束进程 ：看mybatis，用时 ：1.8765850067138672，进程号 ：5636
+call_back :  完成任务 ： 看mybatis
+
+结束进程 ：看白居易，用时 ：1.4934194087982178，进程号 ：272
+call_back :  完成任务 ： 看白居易
+
+结束进程 ：看高数，用时 ：1.9325191974639893，进程号 ：10796
+call_back :  完成任务 ： 看高数
+
+all over !!!
+
+'''

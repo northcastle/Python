@@ -1,0 +1,73 @@
+'''
+    阻塞式进程：
+        1.模块导入 ： from multiprocessing import Pool
+        2.创建进程池，并指定线程个数 ： pool = Pool(5)
+        3.创建进程 ： pool.apply(task,args=(args1,...))
+        4.添加任务结束 ： pool.close()
+        5.阻止主进程结束 ：pool.join()
+'''
+
+from multiprocessing import Pool
+import time
+import random
+import os
+
+#1.定义一个任务方法
+def task(task_name):
+    print('开始任务 ： ',task_name)
+
+    start_time = time.time()
+    time.sleep(random.random()*2)
+    end_time = time.time()
+
+    print('结束进程 ：{}，用时 ：{}，进程号 ：{}'.format(task_name,(end_time-start_time),os.getpid()))
+    print()
+
+
+#2.开始主线程
+if __name__ == '__main__':
+    #2.1 创建可以创建5个的线程池
+    pool = Pool(5)
+    #2.2 用来循环创建进程的列表
+    task_names = ['看Java','看python','看spring','看mybatis','看linux','看git','看高数','看白居易']
+    #2.3 开启线程
+    for task_name in task_names:
+        pool.apply(task,args=[task_name])
+
+    #2.4 关闭进程池
+    pool.close()
+    #2.5 让主线程不要完成，知道上面的线程池结束主线程再结束
+    pool.join()
+    #2.6 最后的结束语
+    print('Over !!!')
+
+'''
+Operation result:
+
+开始任务 ：  看Java
+结束进程 ：看Java，用时 ：0.05485177040100098，进程号 ：8920
+
+开始任务 ：  看python
+结束进程 ：看python，用时 ：0.26330065727233887，进程号 ：8396
+
+开始任务 ：  看spring
+结束进程 ：看spring，用时 ：1.3515620231628418，进程号 ：20436
+
+开始任务 ：  看mybatis
+结束进程 ：看mybatis，用时 ：0.3024415969848633，进程号 ：19268
+
+开始任务 ：  看linux
+结束进程 ：看linux，用时 ：1.029076099395752，进程号 ：10552
+
+开始任务 ：  看git
+结束进程 ：看git，用时 ：1.7122721672058105，进程号 ：8920
+
+开始任务 ：  看高数
+结束进程 ：看高数，用时 ：1.896862268447876，进程号 ：8396
+
+开始任务 ：  看白居易
+结束进程 ：看白居易，用时 ：0.8214430809020996，进程号 ：20436
+
+Over !!!
+
+'''

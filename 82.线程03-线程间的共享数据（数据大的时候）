@@ -1,0 +1,36 @@
+'''
+    线程中的锁：当数据大的时候，自动就突破了锁的操作
+    GIL : 全局解释器锁，
+    Python 只要用线程，默认就会加锁！（这是Python自己的特性）
+    当此时 数量级大的时候，就会突破锁的限制，因此最后的结果得不到 二百万
+'''
+
+import threading
+
+n = 0
+
+def task1():
+    global n
+    for i in range(1000000): # 循环一百万次
+        n += 1
+    print('task1 ---> n : ',n)
+
+def task2():
+    global n
+    for i in range(1000000): # 循环一百万次
+        n += 1
+    print('task1 ---> n : ',n)
+
+
+if __name__ == '__main__':
+    t1 = threading.Thread(target=task1)
+    t2 = threading.Thread(target=task2)
+
+    t1.start()
+    t2.start()
+
+    t1.join()
+    t2.join()
+
+    print('main --> n = ',n) # 这个位置是二百万吗？答 ，他就不是二百万了
+

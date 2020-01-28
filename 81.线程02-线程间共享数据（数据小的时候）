@@ -1,0 +1,43 @@
+'''
+线程是可以共享全局变量的:
+    模拟卖票的场景：
+        一共有1000张票
+        开启四个线程，每次卖一张票
+        卖完一张之后休眠0.1秒
+        则最后的打印结果肯定是 剩下了 600 张票
+
+'''
+
+import threading
+from time import sleep
+
+ticket = 1000
+
+def run1():
+    global ticket
+    for i in range(100):
+        ticket -=1
+        sleep(0.1)
+
+
+
+if __name__ == '__main__':
+    t1 = threading.Thread(target=run1)
+    t1.start()
+
+    t2 = threading.Thread(target=run1)
+    t2.start()
+
+    t3 = threading.Thread(target=run1)
+    t3.start()
+
+    t4 = threading.Thread(target=run1)
+    t4.start()
+
+
+    t1.join()
+    t2.join()
+    t3.join()
+    t4.join()
+
+    print('ticket = ',ticket)

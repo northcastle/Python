@@ -1,0 +1,48 @@
+'''
+    进程间的通信02 ：
+        模拟两个进程，公用一个Queue中的数据
+        一个 put 数据  ，一个 get 数据
+        一边 put数据，一边 get数据
+
+'''
+
+from multiprocessing import Queue,Process
+from time import sleep
+
+def put_file(q:Queue):
+    images = ['a.jpg','b.jpg','c.jpg']
+    for image in images:
+        sleep(0.5)
+        q.put(image)
+        print('{} 下载成功！'.format(image))
+
+def get_file(q:Queue):
+    while not q.empty():
+        image = q.get()
+        print('{} 保存完成！'.format(image))
+
+if __name__ == '__main__':
+    q = Queue(5)
+
+    p_put = Process(target=put_file, args=[q])
+    p_get = Process(target=get_file,args=[q])
+
+    p_put.start()
+    p_put.join()
+
+    p_get.start()
+    p_get.join()
+
+    print('over 。。。。。。')
+
+
+'''
+Operation result : 
+    a.jpg 下载成功！
+    b.jpg 下载成功！
+    c.jpg 下载成功！
+    a.jpg 保存完成！
+    b.jpg 保存完成！
+    c.jpg 保存完成！
+    over 。。。。。。
+'''

@@ -1,0 +1,60 @@
+'''
+    进程间的通信 01：
+        Queue的简单了解 ： 队列 先进先出(FIFO)
+        进程间的通信会用到这个队列作为媒介进行数据的传输：
+            一个进程放入数据，另一个进程读取数据，
+            这两个进程操作的是同一个队列，则操作的数据是相同的！
+        1.引入模块 from multiprocessing import Queue
+        2.创建队列 q = Queue(参数是队列最大的长度)
+        3.队列的方法 :
+            3.1 放入数据 put(数据参数(,timeout=3)) timeout = 3 表示等待3秒放不进去就抛出异常
+            3.2 获取数据 get((timeout=3)) timeout = 3 表示3秒获取不到数据就抛出异常
+
+            3.3 放入数据不等待 put_nowait(数据)
+            3.4 获取数据不等待 get_nowait()
+
+            3.5 判断队列是否满了 full()
+            3.6 判断队列是否空的 empty()
+
+            3.7 队列的长度 qsize()
+'''
+
+from multiprocessing import Queue
+
+#1.创建队列
+q = Queue(5)
+
+#2.放入数据
+q.put('A')
+q.put('B',timeout=3)
+q.put('C',timeout=3)
+q.put('D',timeout=3)
+q.put('E',timeout=3)
+
+#3.获取队列的长度
+len = q.qsize()
+print('此时队列的长度是 ： ',len)
+
+#4.再次放入一个元素，会抛出异常，因为队列已满
+if q.full():
+    print('此时队列已满！')
+else:
+    q.put('qqqq',timeout=3)
+
+#5.取出一个元素
+element = q.get()
+print('取出来的元素是 ： ',element)
+
+#6.此时可以再放进去一个元素了
+q.put_nowait('new_A')
+print('放入 new_A 之后的队列的长度是 ： ',q.qsize())
+
+'''
+Operation result : 
+   此时队列的长度是 ：  5
+    此时队列已满！
+    取出来的元素是 ：  A
+    放入 new_A 之后的队列的长度是 ：  5 
+'''
+
+

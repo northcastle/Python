@@ -1,0 +1,80 @@
+'''
+线程间的通信 ： 生产者消费者模式
+    python的queue模块中提供了同步的，线程安全的队列类，
+    包括先进先出队列 FIFO(Queue),后进先出队列LIFO(LifoQueue)和优先级队列PriorityQueue.
+    这些队列都实现了锁原理。
+    （可以理解为原子操作，要么不做，要么就做完）
+    能够在多线程中直接使用，可以使用队列来实现线程间的同步。
+'''
+import random
+import threading
+import time
+from queue import Queue
+
+
+def produce(q:Queue):
+    i = 0
+    while i < 10:
+        num = random.randint(1,100)
+        q.put("生产者第"+str(i)+"次产生的数据是 ："+str(num))
+        print("生产者第"+str(i)+"次产生的数据是 ："+str(num))
+        time.sleep(1)
+        i += 1
+    q.put(None)
+    #完成任务 : 这是一个内置的方法
+    q.task_done()
+
+def consume(q:Queue):
+    while True:
+        item = q.get()
+        if item is None:
+            break
+        print("消费者获取到 ： %s" % item)
+        time.sleep(4)
+
+    #完成任务 ： 这是一个内置的方法
+    q.task_done()
+
+
+if __name__ == '__main__':
+    q = Queue(10)
+    arr = []
+
+    #1.创建生产者
+    th_p = threading.Thread(target=produce,args=(q,))
+    th_p.start()
+    #2.创建消费者
+    th_c = threading.Thread(target=consume,args=(q,))
+    th_c.start()
+
+    th_p.join()
+    th_c.join()
+
+    print("END")
+
+
+'''
+Operation result:
+    生产者第0次产生的数据是 ：14
+    消费者获取到 ： 生产者第0次产生的数据是 ：14
+    生产者第1次产生的数据是 ：4
+    生产者第2次产生的数据是 ：8
+    生产者第3次产生的数据是 ：50
+    消费者获取到 ： 生产者第1次产生的数据是 ：4
+    生产者第4次产生的数据是 ：16
+    生产者第5次产生的数据是 ：29
+    生产者第6次产生的数据是 ：82
+    生产者第7次产生的数据是 ：95
+    消费者获取到 ： 生产者第2次产生的数据是 ：8
+    生产者第8次产生的数据是 ：85
+    生产者第9次产生的数据是 ：40
+    消费者获取到 ： 生产者第3次产生的数据是 ：50
+    消费者获取到 ： 生产者第4次产生的数据是 ：16
+    消费者获取到 ： 生产者第5次产生的数据是 ：29
+    消费者获取到 ： 生产者第6次产生的数据是 ：82
+    消费者获取到 ： 生产者第7次产生的数据是 ：95
+    消费者获取到 ： 生产者第8次产生的数据是 ：85
+    消费者获取到 ： 生产者第9次产生的数据是 ：40
+    END
+
+'''

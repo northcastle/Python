@@ -1,0 +1,57 @@
+'''
+协程01 ： 通过生成器来手动创建协程
+            生成器 ： 在函数中添加一个 yield 这就变成了生成器
+    Python 中的概念 ： 通过生成器来实现的
+     作用 ： 多用在耗时操作上面
+     例如 ： 网络请求，网络下载（爬虫），IO:文件读写，阻塞
+'''
+
+from time import sleep
+
+
+#1.第一个生成器
+def task_a():
+    for i in range(5):
+        print('task_a : ',i)
+        sleep(1)
+        yield
+
+#2.第二个生成器
+def task_b():
+    for i in range(5):
+        print('task_b : ',i)
+        sleep(1)
+        yield
+
+
+if __name__ == '__main__':
+    g1 = task_a()
+    g2 = task_b()
+
+    while True:
+        #当生成器中有问题的时候就会停止循环
+        #当生成器没有内容生成的时候就会停止循环
+        try:
+            next(g1)
+            next(g2)
+        except:
+            break
+
+
+'''
+实现的效果就是 ： 两个协程交替的进行操作
+task_a :  0
+task_b :  0
+
+task_a :  1
+task_b :  1
+
+task_a :  2
+task_b :  2
+
+task_a :  3
+task_b :  3
+
+task_a :  4
+task_b :  4
+'''

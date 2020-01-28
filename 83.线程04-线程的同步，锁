@@ -1,0 +1,53 @@
+'''
+    线程的同步：手动添加一把锁
+    1.引入模块 import threading
+    2.手动创建锁 ： lock = threading.Lock()
+    3.手动上锁 ： lock.acquire() : 如果已经上锁，需要等待锁的释放
+                 lock.acquire(timeout=5) : 避免出现死锁的操作，添加上超时的参数，超时自动释放资源
+        这中间可以放入共享数据的操作，这样就保证了，数据的安全性
+    4.手动释放锁 ： lock.release()
+
+
+
+    程序例子 ： 还是以这个二百万的例子来说明一下
+    当手动添加上锁的时候，就能够实现两百万的操作了
+'''
+import threading
+
+
+n = 0
+#1.创建了一把锁
+lock = threading.Lock()
+
+
+def task(task_name:str):
+    global n
+    #2.1 获取锁，阻塞
+    lock.acquire()
+    #2.2 执行关于共享数据的操作
+    for i in range(1000000):
+        n += 1
+    #2.3 释放锁
+    lock.release()
+
+    print(task_name,'  中的 n = ',n)
+
+
+if __name__ == '__main__':
+    t1 = threading.Thread(target=task,args=('任务1',))
+    t2 = threading.Thread(target=task,args=('任务2',))
+
+    t1.start()
+    t2.start()
+
+    t1.join()
+    t2.join()
+
+    print('main   n : ',n)
+
+'''
+Operation result:
+    任务1   中的 n =  1000000
+    任务2   中的 n =  2000000
+    main   n :  2000000
+'''

@@ -1,0 +1,51 @@
+'''
+协程03 - gevent 和猴子补丁
+    1.有三个任务 task_a,b,c
+    2.引入 gevent模块 import gevent
+    3.调用spawn()方法创建协程 g1 = gevent.spawn(task_a)
+    4.调用 join()方法阻塞主进程 g1.join()
+        #合并成一句话的操作
+        #gevent.joinall(g1,g2,g3)
+    5.非常关键，引入猴子补丁，
+        from gevent import monkey
+        monkey.patch_all()
+    6.但是，这个gevent好像只对3.6 有用，3.8是没有用的
+
+'''
+
+from time import sleep
+
+import gevent
+from gevent import monkey
+
+monkey.patch_all()
+
+
+def task_a():
+    for i in range(5):
+        print('A : ',i)
+        sleep(1)
+
+def task_b():
+    for i in range(5):
+        print('B : ',i)
+        sleep(1)
+
+def task_c():
+    for i in range(5):
+        print('C : ',i)
+        sleep(1)
+
+
+if __name__ == '__main__':
+    g1 = gevent.spawn(task_a)
+    g2 = gevent.spawn(task_b)
+    g3 = gevent.spawn(task_c)
+
+    g1.join()
+    g2.join()
+    g3.join()
+    #合并成一句话的操作
+    #gevent.joinall(g1,g2,g3)
+
+    print('-----------END----------')
